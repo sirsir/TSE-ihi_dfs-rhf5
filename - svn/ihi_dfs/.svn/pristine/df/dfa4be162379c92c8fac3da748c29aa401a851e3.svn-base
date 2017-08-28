@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="ihi_rhf5_CS_Operation.My.MySettings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+	<connectionStrings>
+  <add name="ihi_dfs_service.My.MySettings.ihi_rhf5_ConnectionString"
+   connectionString="Data Source=192.168.1.2\SQL2008EXPRESS;Initial Catalog=ihi_rhf5_development;User ID=sa;Password=d4168f"
+   providerName="System.Data.SqlClient" />
+  <add name="ihi_rhf5_CS_Operation.My.MySettings.ihi_rhf5_developmentConnectionString"
+   connectionString="Data Source=192.168.99.14;Initial Catalog=ITT-DB1-PRDDATA;Persist Security Info=True;User ID=sa;Password=Gategroup2016-"
+   providerName="System.Data.SqlClient" />
+ </connectionStrings>
+    <startup>
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0,Profile=Client" />
+    </startup>
+    <applicationSettings>
+        <ihi_rhf5_CS_Operation.My.MySettings>
+            <setting name="exportCSOperationPath" serializeAs="String">
+                <value>D:\OMRON_DATA_FILING\temp</value>
+            </setting>
+            <setting name="IsDebugMode" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="LogPath" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="DayToKeepTextLog" serializeAs="String">
+                <value>30</value>
+            </setting>
+            <setting name="SleepInterval" serializeAs="String">
+                <value>500</value>
+            </setting>
+            <setting name="ReadDataMemoryType" serializeAs="String">
+                <value>8519680</value>
+            </setting>
+            <setting name="WriteLifeMemoryType" serializeAs="String">
+                <value>8519680</value>
+            </setting>
+            <setting name="WriteSyncMemoryType" serializeAs="String">
+                <value>8519680</value>
+            </setting>
+            <setting name="SyncTimeWhen" serializeAs="String">
+                <value>00:00</value>
+            </setting>
+            <setting name="WriteStatusMemoryType" serializeAs="String">
+                <value>8519680</value>
+            </setting>
+            <setting name="WriteStatusAddress" serializeAs="String">
+                <value>5021</value>
+            </setting>
+            <setting name="ReadStatusMemoryType" serializeAs="String">
+                <value>8519680</value>
+            </setting>
+            <setting name="ReadStatusAddress" serializeAs="String">
+                <value>5020</value>
+            </setting>
+            <setting name="ReadDataAddress" serializeAs="String">
+                <value>5080</value>
+            </setting>
+            <setting name="ReadDataAsciiLength" serializeAs="String">
+                <value>10</value>
+            </setting>
+            <setting name="ReadDataBcdLength" serializeAs="String">
+                <value>10</value>
+            </setting>
+            <setting name="ReadDataCurrentQTY" serializeAs="String">
+                <value>5090</value>
+            </setting>
+            <setting name="WriteStatusAddressPCEnd" serializeAs="String">
+                <value>5023</value>
+            </setting>
+            <setting name="ReadStatusAddressEnd" serializeAs="String">
+                <value>5022</value>
+            </setting>
+            <setting name="PLC_Net" serializeAs="String">
+                <value>2</value>
+            </setting>
+            <setting name="PLC_Node" serializeAs="String">
+                <value>1</value>
+            </setting>
+            <setting name="PLC_Unit" serializeAs="String">
+                <value>0</value>
+            </setting>
+            <setting name="ReadDataLotData" serializeAs="String">
+                <value>5050</value>
+            </setting>
+            <setting name="ReadDataLotQTY" serializeAs="String">
+                <value>5070</value>
+            </setting>
+            <setting name="BarcodeSplitChar" serializeAs="String">
+                <value>|</value>
+            </setting>
+            <setting name="BarcodeSplitLength" serializeAs="String">
+                <value>4</value>
+            </setting>
+            <setting name="BarcodePartNoIndex" serializeAs="String">
+                <value>0</value>
+            </setting>
+            <setting name="BarcodeLotIndex" serializeAs="String">
+                <value>2</value>
+            </setting>
+            <setting name="BarcodeQtyIndex" serializeAs="String">
+                <value>3</value>
+            </setting>
+        </ihi_rhf5_CS_Operation.My.MySettings>
+    </applicationSettings>
+</configuration>

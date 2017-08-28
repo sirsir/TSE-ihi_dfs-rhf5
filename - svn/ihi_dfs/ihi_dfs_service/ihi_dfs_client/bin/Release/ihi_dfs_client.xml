@@ -1,0 +1,204 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ihi_dfs_client
+</name>
+</assembly>
+<members>
+<member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LINE_MASTERDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_COLUMNSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STRDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.RESULTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.SERIALDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.V_SETTING_COLUMNSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STR_w_SERIALDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LOT_PART_w_LOTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LINE_MASTERRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_COLUMNSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STRRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.RESULTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.SERIALRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.V_SETTING_COLUMNSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STR_w_SERIALRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LOT_PART_w_LOTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LINE_MASTERRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_COLUMNSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STRRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.RESULTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.SERIALRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.V_SETTING_COLUMNSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.MACHINE_DATA_STR_w_SERIALRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet.LOT_PART_w_LOTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.LINE_MASTERTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.MACHINETableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.MACHINE_COLUMNSTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.MACHINE_DATA_STRTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.RESULTTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.SERIALTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.V_SETTING_COLUMNSTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.MACHINE_DATA_STR_w_SERIALTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.LOT_PART_w_LOTTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(ihi_dfs_client.ihi_rhf5_developmentDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(ihi_dfs_client.ihi_rhf5_developmentDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(ihi_dfs_client.ihi_rhf5_developmentDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.UpdateAll(ihi_dfs_client.ihi_rhf5_developmentDataSet)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:ihi_dfs_client.ihi_rhf5_developmentDataSetTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="P:ihi_dfs_client.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ihi_dfs_client.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ihi_dfs_client.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

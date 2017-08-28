@@ -1,0 +1,301 @@
+﻿Public Class frmResultHistory
+
+    Private dtStatic As DataTable
+    Private dtDynamicDataString As DataTable
+    Private dtDynamicDataInteger As DataTable
+    Private dtDynamicDataDateTime As DataTable
+    'Private dtColumnHeader As ihi_rhf5_developmentDataSet.V_SETTING_COLUMNSDataTable
+    Private dtColumnHeader As DataTable
+    Private astrRowHeaderMappingDataMember As String()
+    Private strRawDataColumnMappingDataMember As String
+    Private astrRawDataRowMappingDataMember As String()
+    Private strRawDataValueDataMember As String
+    Private astrHiddenColumnNames
+    Private blnReadOnly As Boolean
+
+    Private Sub frmResultHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+
+            SetDao()
+        Catch ex As Exception
+            MsgBox(ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        initialize_modGlobalVariable()
+        AddControls()
+
+        'SetupDataObj()
+        'SetControls()
+
+    End Sub
+
+
+    Private Sub AddControls()
+        'Dim textbox1 As New TextBox
+        'textbox1.Name = "Textbox1"
+        'textbox1.Size = New Size(170, 20)
+        'textbox1.Location = New Point(167, 32)
+        'Me.TableLayoutPanel3.Controls.Add(textbox1, 0, 0)
+
+        'Me.TableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset
+        Me.TableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+        'Me.TableLayoutPanel3.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset
+
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "*Line:", "Line", 0, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Machine:", "Machine", 2, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Serial:", "Serial", 4, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Search by:", "SearchBy", 6, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Date From:", "DateFrom", 0, 1)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Date To:", "DateTo", 2, 1)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Lot No:", "LotNo", 4, 1)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel3, "Result:", "Result", 6, 1)
+
+
+        For Each ctrl As Control In Me.TableLayoutPanel3.Controls
+            If TypeOf (ctrl) Is TextBox Then
+                DirectCast(ctrl, TextBox).Enabled = False
+            End If
+        Next
+
+
+    End Sub
+
+
+    Private Sub AddLabelTextbox_to_Table(tbl1 As TableLayoutPanel, strLable As String, strName As String, intRow As Integer, intCol As Integer)
+        tbl1.Controls.Add(New Label() With {.Text = strLable, .Anchor = AnchorStyles.Right, .AutoSize = True}, intRow, intCol)
+        'tbl1.Controls.Add(New ComboBox() With {.Name = strName, .Dock = DockStyle.Fill}, intRow + 1, intCol)
+        tbl1.Controls.Add(New TextBox() With {.Name = strName, .Dock = DockStyle.Fill}, intRow + 1, intCol)
+    End Sub
+
+
+    Private Sub FilterData()
+        ' Do something here to handle data from dialog box.
+        'Me.TableLayoutPanel3.Controls("Line").Text = dicSearch("Line")
+        'Me.TableLayoutPanel3.Controls("Machine").Text = dicSearch("Machine")
+        'Me.TableLayoutPanel3.Controls("SearchBy").Text = dicSearch("Search By")
+        'Me.TableLayoutPanel3.Controls("Serial").Text = dicSearch("Serial")
+        'Me.TableLayoutPanel3.Controls("LotNo").Text = dicSearch("Lot No")
+        'Me.TableLayoutPanel3.Controls("DateFrom").Text = dicSearch("Date From")
+        'Me.TableLayoutPanel3.Controls("DateTo").Text = dicSearch("Date To")
+        'Me.TableLayoutPanel3.Controls("Result").Text = dicSearch("Result")
+
+        Me.TextBoxLine.Text = dicSearch("Line")
+        Me.TextBoxMachine.Text = dicSearch("Machine")
+        Me.TextBoxSearchBy.Text = dicSearch("Search By")
+        Me.TextBoxSerial.Text = dicSearch("Serial")
+        Me.TextBoxLotNo.Text = dicSearch("Lot No")
+        Me.TextBoxDateFrom.Text = dicSearch("Date From")
+        Me.TextBoxDateTo.Text = dicSearch("Date To")
+        Me.TextBoxResult.Text = dicSearch("Result")
+
+
+        dtStatic = da_SERIAL.GetDataByDateFrom_DateTo(DateTime.ParseExact(dicSearch("Date From"), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                                                      DateTime.ParseExact(dicSearch("Date To"), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture))
+
+        If dicSearch("Serial") <> "" Then
+            Dim dv As DataView = dtStatic.DefaultView
+            dv.RowFilter = dicMapSearchBy(dicSearch("Search By")) & " LIKE '%" & dicSearch("Serial") & "%'"
+
+            dtStatic = dv.ToTable
+        End If
+
+
+        If dicSearch("Lot No") <> "" Then
+            Dim dv As DataView = dtStatic.DefaultView
+            dv.RowFilter = dicMapSearchBy(dicSearch("Search By")) & " LIKE '" & dicSearch("Lot No") & "%'"
+
+            dtStatic = dv.ToTable
+        End If
+
+        If dicSearch("Machine") <> "" Then
+
+            dtDynamicDataString = da_MACHINE_DATA_STR_w_SERIAL.GetDataByLineID_MachineName(dicMapLineId(dicSearch("Line")), dicSearch("Machine"))
+            dtColumnHeader = da_V_SETTING_COLUMNS.GetDataByLineID_MachineName(dicMapLineId(dicSearch("Line")), dicSearch("Machine"))
+        Else
+            dtDynamicDataString = da_MACHINE_DATA_STR_w_SERIAL.GetDataByLineID_MachineName(dicMapLineId(dicSearch("Line")), "%")
+            dtColumnHeader = da_V_SETTING_COLUMNS.GetDataByLineID_MachineName(dicMapLineId(dicSearch("Line")), "%")
+        End If
+
+
+
+
+
+
+        'If dicSearch("Machine") <> "" Then
+        '    dtStatic = da_SERIAL.GetData()
+
+        '    'dtDynamicDataString = da_MACHINE_DATA_STR.GetData()
+        '    'dtDynamicDataString = da_MACHINE_DATA_STR_w_SERIAL.GetData()
+        '    If dicSearch("DateFrom") = "" And dicSearch("DateFrom") = "" Then
+        '        dtDynamicDataString = da_MACHINE_DATA_STR_w_SERIAL.GetDataByMachineName(dicSearch("Machine"))
+        '    Else
+        '        If dicSearch("DateFrom") = "" Then
+
+        '        End If
+        '    End If
+
+        dtDynamicDataInteger = Nothing
+        dtDynamicDataDateTime = Nothing
+        'dtColumnHeader = da_V_SETTING_COLUMNS.GetDataByMachineName(dicSearch("Machine"))
+
+        'dtColumnHeader = da_V_SETTING_COLUMNS.GetData()
+        'astrRowHeaderMappingDataMember = {"ENGINE_ID", "REV_NO"}
+        astrRowHeaderMappingDataMember = {"SERIAL_ID"}
+        strRawDataColumnMappingDataMember = "MACHINE_COLUMNS_ID"
+        'astrRawDataRowMappingDataMember = {"ENGINE_ID", "REV_NO"}
+        astrRawDataRowMappingDataMember = {"SERIAL_ID"}
+        strRawDataValueDataMember = "DATA"
+        astrHiddenColumnNames = {"SERIAL_ID", "SERIAL_BH", "SERIAL_CS", "SERIAL_ITA"}
+
+
+
+
+
+        DirectCast(DataGridView1, ctrlPivotGrid).SetDataSource(dtStatic _
+                                        , dtDynamicDataString _
+                                        , dtDynamicDataInteger _
+                                        , dtDynamicDataDateTime _
+                                        , dtColumnHeader _
+                                        , astrRowHeaderMappingDataMember _
+                                        , strRawDataColumnMappingDataMember _
+                                        , astrRawDataRowMappingDataMember _
+                                        , strRawDataValueDataMember _
+                                        , astrHiddenColumnNames _
+                                         , blnReadOnly)
+
+
+    End Sub
+
+    Private Sub ButtonFilter_Click(sender As Object, e As EventArgs) Handles ButtonFilter.Click
+        'dataFilter()
+        Try
+            Dim frm As New frmFilter
+            'frm.ShowDialog()
+
+            If frm.ShowDialog = DialogResult.OK Then
+
+                Me.FilterData()
+
+
+
+            End If
+
+        Catch ex As Exception
+            m_clsLogger.AppendLog(ex)
+        End Try
+    End Sub
+
+    Private Sub SetDao()
+        'dtStatic = DirectCast(dtStatic, ihi_rhf5_developmentDataSetTableAdapters.SERIALTableAdapter).getdata()
+        dtStatic = da_SERIAL.getdata()
+
+        'dtDynamicDataString = da_MACHINE_DATA_STR.GetData()
+        dtDynamicDataString = da_MACHINE_DATA_STR_w_SERIAL.GetData()
+        dtDynamicDataInteger = Nothing
+        dtDynamicDataDateTime = Nothing
+        dtColumnHeader = da_V_SETTING_COLUMNS.GetData()
+        'astrRowHeaderMappingDataMember = {"ENGINE_ID", "REV_NO"}
+        astrRowHeaderMappingDataMember = {"SERIAL_ID"}
+        strRawDataColumnMappingDataMember = "MACHINE_COLUMNS_ID"
+        'astrRawDataRowMappingDataMember = {"ENGINE_ID", "REV_NO"}
+        astrRawDataRowMappingDataMember = {"SERIAL_ID"}
+        strRawDataValueDataMember = "DATA"
+        astrHiddenColumnNames = {"SERIAL_ID", "SERIAL_BH", "SERIAL_CS", "SERIAL_ITA", "SERIAL_TS", "SERIAL_CW"}
+
+
+
+
+      
+        DirectCast(DataGridView1, ctrlPivotGrid).SetDataSource(dtStatic _
+                                        , dtDynamicDataString _
+                                        , dtDynamicDataInteger _
+                                        , dtDynamicDataDateTime _
+                                        , dtColumnHeader _
+                                        , astrRowHeaderMappingDataMember _
+                                        , strRawDataColumnMappingDataMember _
+                                        , astrRawDataRowMappingDataMember _
+                                        , strRawDataValueDataMember _
+                                        , astrHiddenColumnNames _
+                                         , blnReadOnly)
+    End Sub
+
+
+
+
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles ButtonShowParts.Click
+
+
+
+        Try
+            'Dim intSelectRow As Integer
+
+            'intSelectRow = DataGridView1.CurrentCell.RowIndex
+
+            'Dim dr As DataRow
+
+            'dr = DataGridView1.Rows(intSelectRow).DataBoundItem
+
+
+            'dr = DataGridView1.SelectedRows(0).DataBoundItem
+            'dr = DataGridView1.CurrentRow.DataBoundItem
+
+            'dr = DataGridView1.Rows(DataGridView1.CurrentCell.RowIndex).DataBoundItem.Row
+
+
+            If DataGridView1.CurrentCell Is Nothing Then
+                drSelectedRow = DataGridView1.Rows(0).DataBoundItem.Row
+            Else
+                drSelectedRow = DataGridView1.Rows(DataGridView1.CurrentCell.RowIndex).DataBoundItem.Row
+            End If
+
+            'If drSelectedRow Is Nothing Then
+            '    drSelectedRow = DataGridView1.Rows(0).DataBoundItem
+            'End If
+
+
+
+            Dim frm As New frmShowParts
+            'frm.ShowDialog()
+
+            If frm.ShowDialog = DialogResult.OK Then
+
+                'Me.FilterData()
+
+
+
+            End If
+
+        Catch ex As Exception
+            m_clsLogger.AppendLog(ex)
+        End Try
+
+
+
+
+    End Sub
+
+    Private Sub ButtonRefresh_Click(sender As System.Object, e As System.EventArgs) Handles ButtonRefresh.Click
+
+        Try
+
+
+
+            'da_MACHINE_DATA_STR_w_SERIAL = New ihi_rhf5_developmentDataSetTableAdapters.MACHINE_DATA_STR_w_SERIALTableAdapter()
+
+
+
+            FilterData()
+
+        Catch ex As Exception
+            m_clsLogger.AppendLog(ex)
+        End Try
+    End Sub
+End Class

@@ -1,0 +1,6 @@
+Todo: 20160606
+1) execute 20160603_1704_01_alter_table_bom_add_part_name.sql
+2) execute 20160603_1708_02_alter_table_lot_part_add_lot2_lot3_columns.sql
+3) execute 20160605_1638_01_alter_table_lot_part_add_lot2_lot3_columns.sql
+4) update ihi_rhf5_CS_Operation program on C/S PC
+5) สามารถ remote desktop ไปยัง PC แต่ละเครื่องได้ตาม login ใน login.txt

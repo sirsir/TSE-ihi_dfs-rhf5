@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <common root="D:\OMRON_DATA_FILING\output\"
+          root_temp="D:\OMRON_DATA_FILING\temp"
+          sleep_interval="500"
+          readdataasciilength="20"
+          readdatabcdlength="30"
+          synctimewhen="00:00"
+          usecsvmode="0"
+          usexlsmode="1"></common>
+  <!-- Declare Data in following format: FieldName,Type,Position,Length,CalFormula,WriteFormat -->
+  
+  <line no="1" name="OP10" path=".\OP10"
+        net="1" node="1" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Initial Load(KN) Min,b,0,0,0.001,0.000,[E]|
+        Initial Load(KN) Max,b,1,0,0.001,0.000,[F]|
+        Final Load(KN) Min,b,2,0,0.001,0.000,[G]|
+        Final Load(KN) Max,b,3,0,0.001,0.000,[H]|
+        Depth Point 1(mm) Min,b,4,0,0.001,0.000,[I]|
+        Depth Point 1(mm) Max,b,5,0,0.001,0.000,[J]|
+        Depth Point 2(mm) Min,b,6,0,0.001,0.000,[K]|
+        Depth Point 2(mm) Max,b,7,0,0.001,0.000,[L]|
+        Depth Point 3(mm) Min,b,8,0,0.001,0.000,[M]|
+        Depth Point 3(mm) Max,b,9,0,0.001,0.000,[N]|
+        Flatness(mm) Min,b,10,0,0.001,0.000,[O]|
+        Flatness(mm) Max,b,11,0,0.001,0.000,[P]|
+        Initial Load(KN),b,15,0,0.001,0.000,[Q]|
+        Final Load(KN),b,16,0,0.001,0.000,[R]|
+        Depth Point 1(mm),b,17,0,0.001,0.000,[S]|
+        Depth Point 2(mm),b,18,0,0.001,0.000,[T]|
+        Depth Point 3(mm),b,19,0,0.001,0.000,[U]|
+        Flatness(mm),b,20,0,0.001,0.000,[V]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+  
+  <line no="2" name="OP20" path=".\OP20"
+        net="1" node="2" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Depth of snap ring (mm) Min,b,0,0,0.001,0.000,[E]|
+        Depth of snap ring (mm) Max,b,1,0,0.001,0.000,[F]|
+        Depth of snap ring (mm),b,15,0,0.001,0.000,[Q]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="3" name="OP30" path=".\OP30"
+        net="1" node="3" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+                
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Torque (N.m) Min,b,0,0,0.01,0.00,[E]|
+        Torque (N.m) Max,b,1,0,0.01,0.00,[F]|
+        Torque point 1 (N.m),b,15,0,0.01,0.00,[Q]|
+        Torque point 2 (N.m),b,16,0,0.01,0.00,[R]|
+        Torque point 3 (N.m),b,17,0,0.01,0.00,[S]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="4" name="OP40" path=".\OP40"
+        net="1" node="4" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="1"
+        copypath="D:\LOGGING"
+        copywildcard="*.jpg"
+        copypurgeoldpath="D:\OMRON_DATA_FILING\NODATA"
+        copyperiodmillisec="8000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Has Image,b,15,0,1,0,[Q]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="5" name="OP50" path=".\OP50"
+        net="1" node="5" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Torque (N.m) Min,b,0,0,0.01,0.00,[E]|
+        Torque (N.m) Max,b,1,0,0.01,0.00,[F]|
+        Torque point 1 (N.m),b,15,0,0.01,0.00,[Q]|
+        Torque point 2 (N.m),b,16,0,0.01,0.00,[R]|
+        Torque point 3 (N.m),b,17,0,0.01,0.00,[S]|
+        Torque point 4 (N.m),b,18,0,0.01,0.00,[T]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="6" name="OP60" path=".\OP60"
+        net="1" node="6" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Temp.1(C) Min,b,0,0,1,0,[E]|
+        Temp.1(C) Max,b,1,0,1,0,[F]|
+        Clearance(mm),b,2,0,0.1,0.0,[G]|
+        X - 1 Min,b,3,0,0.01,0.00,[H]|
+        X - 1 Max,b,4,0,0.01,0.00,[I]|
+        X - 0.5 Min,b,5,0,0.01,0.00,[J]|
+        X - 0.5 Max,b,6,0,0.01,0.00,[K]|
+        X Min,b,7,0,0.01,0.00,[L]|
+        X Max,b,8,0,0.01,0.00,[M]|
+        Temp.2(C) Min,b,9,0,1,0,[N]|
+        Temp.2(C) Max,b,10,0,1,0,[O]|
+        Temp.1(C),b,15,0,1,0,[Q]|
+        Clearance(mm),b,16,0,0.1,0.0,[R]|
+        X - 1,b,17,0,0.01,0.00,[S]|
+        X - 0.5,b,18,0,0.01,0.00,[T]|
+        X,b,19,0,0.01,0.00,[U]|
+        Temp.2(C),b,20,0,1,0,[V]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="7" name="OP70" path=".\OP70"
+        net="1" node="7" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Temp.1(C) Min,b,0,0,0.1,0.0,[E]|
+        Temp.1(C) Max,b,1,0,0.1,0.0,[F]|
+        Torque Step 1(N.m) Min,b,2,0,0.01,0.00,[G]|
+        Torque Step 1(N.m) Max,b,3,0,0.01,0.00,[H]|
+        Angle Step 1(Degree) Min,b,4,0,1,0,[I]|
+        Angle Step 1(Degree) Max,b,5,0,1,0,[J]|
+        Angle Retihghtening(Degree) Min,b,6,0,1,0,[K]|
+        Angle Retihghtening(Degree) Max,b,7,0,1,0,[L]|
+        Torque Step 2(N.m) Min,b,8,0,0.01,0.00,[M]|
+        Torque Step 2(N.m) Max,b,9,0,0.01,0.00,[N]|
+        Angle Step 2(Degree) Min,b,10,0,1,0,[O]|
+        Angle Step 2(Degree) Max,b,11,0,1,0,[P]|
+        Temp.1(C),b,15,0,0.1,0.0,[Q]|
+        Torque Step 1(N.m),b,16,0,0.01,0.00,[R]|
+        Angle Step 1(Degree),b,17,0,1,0,[S]|
+        Angle Retihghtening(Degree),b,18,0,1,0,[T]|
+        Torque Step 2(N.m),b,19,0,0.01,0.00,[U]|
+        Angle Step 2(Degree),b,20,0,1,0,[V]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="8" name="OP80" path=".\OP80"
+        net="1" node="8" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Thrust Clearance(mm) Min,b,0,0,0.001,0.000,[E]|
+        Thrust Clearance(mm) Max,b,1,0,0.001,0.000,[F]|
+        Thrust Clearance(mm),b,15,0,0.001,0.000,[Q]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+  <line no="25" name="OP25" path=".\OP25"
+        net="1" node="25" unit="0"
+        readstatusaddress="DM_05000" readstatuslength="1"
+        readdataaddress="E0_32700"
+        writestatusaddress="DM_05001"
+        writelifeaddress="DM_05002"
+        writesyncaddress="DM_05010"
+        
+        copyfile="0"
+        copypath=""
+        copywildcard=""
+        copypurgeoldpath=""
+        copyperiodmillisec="5000"
+        copypurgeperiodday="2"
+        
+        serial="SERIAL,s,4,16,,{0},"
+        mode="MODE,s,20,6,,{0},"
+        mc="MC,s,0,2,,OP{0},"
+        lotno="LOT_NO,s,2,2,,{0},"
+        filename="FILE_NAME,s,28,8,,{0},"
+        datetime="DATE_TIME,d,27,3,,,"
+        status="STATUS,s,26,2,,{0},"
+        
+        format="Serial,s,4,16,,{0},[SERIAL]|Mode,s,20,6,,{0},[MODE]|MC,s,0,2,,OP{0},[MC]|
+        Date,d,27,3,,20yy:MM:dd,[DATE]|
+        Time,d,27,3,,HH:mm:ss,[TIME]|
+        Status,c,26,2,,{0},[STATUS]|
+        Lot No.,s,2,2,,,|
+        File Name,s,28,8,,,
+        "></line>
+
+
+</settings>

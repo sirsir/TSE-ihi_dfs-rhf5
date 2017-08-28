@@ -1,0 +1,356 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmCSOperation
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtProductionLot = New System.Windows.Forms.TextBox()
+        Me.txtCustomerLot = New System.Windows.Forms.TextBox()
+        Me.txtLotQTY = New System.Windows.Forms.TextBox()
+        Me.txtCurrentQTY = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnEdit = New System.Windows.Forms.Button()
+        Me.btnRework = New System.Windows.Forms.Button()
+        Me.btnStartLot = New System.Windows.Forms.Button()
+        Me.btnEndLot = New System.Windows.Forms.Button()
+        Me.btnEndRework = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.NO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PART = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LOT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.QTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me._DATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TIME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LOTPARTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Ihi_rhf5 = New ihi_rhf5_CS_Operation.ihi_rhf5()
+        Me.LOT_PARTTableAdapter = New ihi_rhf5_CS_Operation.ihi_rhf5TableAdapters.LOT_PARTTableAdapter()
+        Me.BOMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.BOMTableAdapter = New ihi_rhf5_CS_Operation.ihi_rhf5TableAdapters.BOMTableAdapter()
+        Me.Button1 = New System.Windows.Forms.Button()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LOTPARTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Ihi_rhf5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BOMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.ForeColor = System.Drawing.Color.Red
+        Me.Label1.Location = New System.Drawing.Point(54, 25)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(86, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "*Production Lot: "
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.Red
+        Me.Label2.Location = New System.Drawing.Point(61, 51)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(79, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "*Customer Lot: "
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.Red
+        Me.Label3.Location = New System.Drawing.Point(89, 77)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(51, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "*Lot Qty: "
+        '
+        'txtProductionLot
+        '
+        Me.txtProductionLot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtProductionLot.Location = New System.Drawing.Point(146, 22)
+        Me.txtProductionLot.MaxLength = 20
+        Me.txtProductionLot.Name = "txtProductionLot"
+        Me.txtProductionLot.Size = New System.Drawing.Size(173, 20)
+        Me.txtProductionLot.TabIndex = 3
+        '
+        'txtCustomerLot
+        '
+        Me.txtCustomerLot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtCustomerLot.Location = New System.Drawing.Point(146, 48)
+        Me.txtCustomerLot.Name = "txtCustomerLot"
+        Me.txtCustomerLot.ReadOnly = True
+        Me.txtCustomerLot.Size = New System.Drawing.Size(173, 20)
+        Me.txtCustomerLot.TabIndex = 4
+        '
+        'txtLotQTY
+        '
+        Me.txtLotQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtLotQTY.Location = New System.Drawing.Point(146, 74)
+        Me.txtLotQTY.MaxLength = 4
+        Me.txtLotQTY.Name = "txtLotQTY"
+        Me.txtLotQTY.Size = New System.Drawing.Size(173, 20)
+        Me.txtLotQTY.TabIndex = 5
+        '
+        'txtCurrentQTY
+        '
+        Me.txtCurrentQTY.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.txtCurrentQTY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtCurrentQTY.Enabled = False
+        Me.txtCurrentQTY.Location = New System.Drawing.Point(434, 74)
+        Me.txtCurrentQTY.Name = "txtCurrentQTY"
+        Me.txtCurrentQTY.Size = New System.Drawing.Size(84, 20)
+        Me.txtCurrentQTY.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label4.Location = New System.Drawing.Point(356, 77)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(72, 13)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Current QTY: "
+        '
+        'btnEdit
+        '
+        Me.btnEdit.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEdit.Location = New System.Drawing.Point(353, 46)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(75, 23)
+        Me.btnEdit.TabIndex = 8
+        Me.btnEdit.Text = "EDIT"
+        Me.btnEdit.UseVisualStyleBackColor = False
+        '
+        'btnRework
+        '
+        Me.btnRework.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.btnRework.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRework.Location = New System.Drawing.Point(524, 46)
+        Me.btnRework.Name = "btnRework"
+        Me.btnRework.Size = New System.Drawing.Size(154, 23)
+        Me.btnRework.TabIndex = 10
+        Me.btnRework.Text = "REWORK"
+        Me.btnRework.UseVisualStyleBackColor = False
+        '
+        'btnStartLot
+        '
+        Me.btnStartLot.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.btnStartLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnStartLot.Location = New System.Drawing.Point(524, 20)
+        Me.btnStartLot.Name = "btnStartLot"
+        Me.btnStartLot.Size = New System.Drawing.Size(154, 23)
+        Me.btnStartLot.TabIndex = 11
+        Me.btnStartLot.Text = "START LOT."
+        Me.btnStartLot.UseVisualStyleBackColor = False
+        '
+        'btnEndLot
+        '
+        Me.btnEndLot.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.btnEndLot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEndLot.Location = New System.Drawing.Point(745, 20)
+        Me.btnEndLot.Name = "btnEndLot"
+        Me.btnEndLot.Size = New System.Drawing.Size(154, 23)
+        Me.btnEndLot.TabIndex = 13
+        Me.btnEndLot.Text = "END LOT."
+        Me.btnEndLot.UseVisualStyleBackColor = False
+        '
+        'btnEndRework
+        '
+        Me.btnEndRework.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.btnEndRework.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEndRework.Location = New System.Drawing.Point(745, 46)
+        Me.btnEndRework.Name = "btnEndRework"
+        Me.btnEndRework.Size = New System.Drawing.Size(154, 23)
+        Me.btnEndRework.TabIndex = 12
+        Me.btnEndRework.Text = "END REWORK"
+        Me.btnEndRework.UseVisualStyleBackColor = False
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NO, Me.PART, Me.LOT, Me.QTY, Me._DATE, Me.TIME})
+        Me.DataGridView1.Location = New System.Drawing.Point(146, 111)
+        Me.DataGridView1.Name = "DataGridView1"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.DataGridView1.Size = New System.Drawing.Size(753, 353)
+        Me.DataGridView1.TabIndex = 14
+        '
+        'NO
+        '
+        Me.NO.DataPropertyName = "SEQ"
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.NO.DefaultCellStyle = DataGridViewCellStyle2
+        Me.NO.Frozen = True
+        Me.NO.HeaderText = "No."
+        Me.NO.Name = "NO"
+        Me.NO.ReadOnly = True
+        '
+        'PART
+        '
+        Me.PART.DataPropertyName = "PART_NO"
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.PART.DefaultCellStyle = DataGridViewCellStyle3
+        Me.PART.HeaderText = "PART*"
+        Me.PART.Name = "PART"
+        Me.PART.ReadOnly = True
+        '
+        'LOT
+        '
+        Me.LOT.HeaderText = "LOT"
+        Me.LOT.Name = "LOT"
+        '
+        'QTY
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.QTY.DefaultCellStyle = DataGridViewCellStyle4
+        Me.QTY.HeaderText = "QTY"
+        Me.QTY.Name = "QTY"
+        '
+        '_DATE
+        '
+        Me._DATE.HeaderText = "Date"
+        Me._DATE.Name = "_DATE"
+        '
+        'TIME
+        '
+        Me.TIME.HeaderText = "Time"
+        Me.TIME.Name = "TIME"
+        '
+        'LOTPARTBindingSource
+        '
+        Me.LOTPARTBindingSource.DataMember = "LOT_PART"
+        Me.LOTPARTBindingSource.DataSource = Me.Ihi_rhf5
+        '
+        'Ihi_rhf5
+        '
+        Me.Ihi_rhf5.DataSetName = "ihi_rhf5"
+        Me.Ihi_rhf5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'LOT_PARTTableAdapter
+        '
+        Me.LOT_PARTTableAdapter.ClearBeforeFill = True
+        '
+        'BOMBindingSource
+        '
+        Me.BOMBindingSource.DataMember = "BOM"
+        Me.BOMBindingSource.DataSource = Me.Ihi_rhf5
+        '
+        'BOMTableAdapter
+        '
+        Me.BOMTableAdapter.ClearBeforeFill = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(353, 13)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 15
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'frmCSOperation
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
+        Me.ClientSize = New System.Drawing.Size(961, 462)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.btnEndLot)
+        Me.Controls.Add(Me.btnEndRework)
+        Me.Controls.Add(Me.btnStartLot)
+        Me.Controls.Add(Me.btnRework)
+        Me.Controls.Add(Me.btnEdit)
+        Me.Controls.Add(Me.txtCurrentQTY)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.txtLotQTY)
+        Me.Controls.Add(Me.txtCustomerLot)
+        Me.Controls.Add(Me.txtProductionLot)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.Name = "frmCSOperation"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "IHI - RHF5 - C/S Operation"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LOTPARTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Ihi_rhf5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BOMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents txtProductionLot As System.Windows.Forms.TextBox
+    Friend WithEvents txtCustomerLot As System.Windows.Forms.TextBox
+    Friend WithEvents txtLotQTY As System.Windows.Forms.TextBox
+    Friend WithEvents txtCurrentQTY As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents btnEdit As System.Windows.Forms.Button
+    Friend WithEvents btnRework As System.Windows.Forms.Button
+    Friend WithEvents btnStartLot As System.Windows.Forms.Button
+    Friend WithEvents btnEndLot As System.Windows.Forms.Button
+    Friend WithEvents btnEndRework As System.Windows.Forms.Button
+    Friend WithEvents Ihi_rhf5 As ihi_rhf5_CS_Operation.ihi_rhf5
+    Friend WithEvents LOTPARTBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents LOT_PARTTableAdapter As ihi_rhf5_CS_Operation.ihi_rhf5TableAdapters.LOT_PARTTableAdapter
+    Friend WithEvents BOMBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents BOMTableAdapter As ihi_rhf5_CS_Operation.ihi_rhf5TableAdapters.BOMTableAdapter
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents NO As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PART As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LOT As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents QTY As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents _DATE As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TIME As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+End Class

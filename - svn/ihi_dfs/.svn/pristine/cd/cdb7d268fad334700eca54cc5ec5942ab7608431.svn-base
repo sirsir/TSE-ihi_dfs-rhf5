@@ -1,0 +1,810 @@
+﻿Imports System.IO
+Imports System.Text.RegularExpressions
+Public Class frmCSOperation
+
+#Region "Attribute"
+    Private m_dsIHI_RHF5 As ihi_rhf5
+
+    Private m_taManager As ihi_rhf5TableAdapters.TableAdapterManager
+    'read only
+    Private m_taLine_Master As ihi_rhf5TableAdapters.LINE_MASTERTableAdapter
+    Private m_taGlobal_Variables As ihi_rhf5TableAdapters.GLOBAL_VARIABLESTableAdapter
+    Private m_taLOT As ihi_rhf5TableAdapters.LOTTableAdapter
+    Private m_taLOT_PART As ihi_rhf5TableAdapters.LOT_PARTTableAdapter
+    Private m_taBom As ihi_rhf5TableAdapters.BOMTableAdapter
+    Private m_taSerial As ihi_rhf5TableAdapters.SERIALTableAdapter
+
+    'insert update delete
+    Private drLot As ihi_rhf5.LOTRow
+    Private drLotPart As ihi_rhf5.LOT_PARTRow
+    Private drGlobal_Variables As ihi_rhf5.GLOBAL_VARIABLESRow
+
+    Private m_objLogger As clsLogger
+
+    Private strFilePath As String = ""
+    Private strExport As String = ""
+    Private blnCheckDuplicate As Boolean
+    'Private blnCheckFistStep As Boolean
+
+    Private m_astrFileNameList As ArrayList
+    Private strBackupName As String = "D:\OMRON_DATA_FILING\temp\exportCSOperation_backup\"
+    Private arrtemp() As String
+    'Friend WithEvents m_objPlc As System.ComponentModel.BackgroundWorker
+    Friend WithEvents m_objPlc As clsPlcCommunication
+    'Friend WithEvents m_objPlcLotData As clsPlcCommunication.clsLotData
+
+#End Region
+
+    Private Sub frmCSOperation_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        Try
+            m_objPlc.CancelAsync()
+            m_objPlc.Dispose()
+
+            System.GC.Collect()
+            Me.Dispose()
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "frmCSOperation_FormClosed", ex)
+        End Try
+
+    End Sub
+
+    Private Sub frmCSOperation_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Try
+
+            'TODO: This line of code loads data into the 'Ihi_rhf5.BOM' table. You can move, or remove it, as needed.
+            Me.BOMTableAdapter.Fill(Me.Ihi_rhf5.BOM)
+            'TODO: This line of code loads data into the 'Ihi_rhf5.LOT_PART' table. You can move, or remove it, as needed.
+            'Me.LOT_PARTTableAdapter.Fill(Me.Ihi_rhf5.LOT_PART)
+            DataGridView1.AutoGenerateColumns = False
+            DataGridView1.DataSource = m_taBom.GetData()
+
+            m_taGlobal_Variables.FillBy_ID(m_dsIHI_RHF5.GLOBAL_VARIABLES, "strCustomerLot")
+            If m_dsIHI_RHF5.GLOBAL_VARIABLES IsNot Nothing AndAlso m_dsIHI_RHF5.GLOBAL_VARIABLES.Count > 0 Then
+                drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES(0)
+                txtCustomerLot.Text = drGlobal_Variables.TEXT_VALUE
+                txtCustomerLot.Enabled = False
+            Else
+                txtCustomerLot.Text = ""
+                txtCustomerLot.Enabled = True
+            End If
+
+            btnEndLot.Enabled = False
+            btnEndRework.Enabled = False
+            m_objPlc = New clsPlcCommunication
+            m_objPlc.LotData = New clsPlcCommunication.clsLotData
+            m_objPlc.WorkerReportsProgress = True
+            m_objPlc.WorkerSupportsCancellation = True
+            m_objPlc.RunWorkerAsync()
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "frmCSOperation_Load", ex)
+        End Try
+    End Sub
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Try
+            m_objLogger = New clsLogger
+            m_dsIHI_RHF5 = New ihi_rhf5
+            m_taManager = New ihi_rhf5TableAdapters.TableAdapterManager
+            m_taGlobal_Variables = New ihi_rhf5TableAdapters.GLOBAL_VARIABLESTableAdapter
+            m_taLOT = New ihi_rhf5TableAdapters.LOTTableAdapter
+            m_taLOT_PART = New ihi_rhf5TableAdapters.LOT_PARTTableAdapter
+            m_taBom = New ihi_rhf5TableAdapters.BOMTableAdapter
+            m_taLine_Master = New ihi_rhf5TableAdapters.LINE_MASTERTableAdapter
+
+            'm_dsIHI_RHF5.Clear()
+            'm_taBom.Fill(m_dsIHI_RHF5.BOM)
+            'm_taGlobal_Variables.Fill(m_dsIHI_RHF5.GLOBAL_VARIABLES)
+            m_taManager.GLOBAL_VARIABLESTableAdapter = m_taGlobal_Variables
+            m_taManager.LOTTableAdapter = m_taLOT
+            m_taManager.LOT_PARTTableAdapter = m_taLOT_PART
+
+            m_astrFileNameList = New ArrayList
+
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "LoadMaster", ex)
+        End Try
+    End Sub
+
+    Private Sub txtLotQTY_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtLotQTY.KeyPress
+        'key the number only.
+        If (Char.IsNumber(e.KeyChar) = False) And (e.KeyChar <> ""c) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtCurrentQTY_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCurrentQTY.KeyPress
+        'key the number only.
+        If (Char.IsNumber(e.KeyChar) = False) And (e.KeyChar <> ""c) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellValidating(sender As Object, e As System.Windows.Forms.DataGridViewCellValidatingEventArgs) Handles DataGridView1.CellValidating
+
+        Try
+            ' several possible format styles
+            'Dim formats() As String = {"d-MM-yyyy", "dd-MM-yyyy", "dd-M-yyyy", "d-M-yyyy"}
+            Dim formats As String = "dd/MM/yyyy"
+            Dim thisDt As DateTime
+
+            Dim regexpTemp As Regex = New Regex("^([0-2]{1}[0-9]{1}[:]{1}[0-5]{1}[0-9]{1})$")
+            Select Case e.ColumnIndex
+                Case 2
+                Case 3
+                    If Not (IsNumeric(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue) _
+                    Or DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue = "") Then
+                        MsgBox("Input number only.")
+                        e.Cancel = True
+                    End If
+                Case 4
+
+                    If Not ((DateTime.TryParseExact(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue, formats,
+                                              Globalization.CultureInfo.InvariantCulture,
+                                              Globalization.DateTimeStyles.None, thisDt)) Or _
+                            (DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue = "")) Then
+
+                        MsgBox("Input date format dd/mm/yyyy only.")
+                        e.Cancel = True
+                    End If
+                Case 5
+                    If Not (regexpTemp.IsMatch(DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue) Or _
+                            (DataGridView1.Rows(e.RowIndex).Cells(e.ColumnIndex).EditedFormattedValue = "")) Then
+                        MsgBox("Time format is 1 number (0-2) and 1 number (0-9) " & vbCrLf & _
+                               " and 1 colon (:) and 1 number (0-5) and 1 number and (0-9).")
+                        e.Cancel = True
+                    End If
+            End Select
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "CellValidating", ex)
+        End Try
+
+    End Sub
+
+    Private Sub btnStartLot_Click(sender As System.Object, e As System.EventArgs) Handles btnStartLot.Click
+        Try
+            'CHECK CAN START
+            If m_objPlc.Started Then
+                Return
+            End If
+
+            If txtProductionLot.Text.Trim = "" Then
+                MsgBox("Please input Production Lot.")
+                txtProductionLot.Select()
+                Exit Sub
+            End If
+
+            If txtCustomerLot.Text.Trim = "" Then
+                MsgBox("Please input Customer Lot.")
+                txtCustomerLot.Select()
+                Exit Sub
+            End If
+
+            If txtLotQTY.Text.Trim = "" Then
+                MsgBox("Please input Lot QTY.")
+                txtLotQTY.Select()
+                Exit Sub
+            End If
+
+            strExport = ""
+            strExport &= txtProductionLot.Text & "|" & txtCustomerLot.Text & _
+                            "|" & txtLotQTY.Text & vbCrLf
+
+            For x = 0 To DataGridView1.Rows.Count - 1
+                For y = 0 To DataGridView1.Columns.Count - 1
+                    If Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) = "" Then
+                        MsgBox("cannot input empty data.")
+                        Me.DataGridView1.CurrentCell = DataGridView1.Item(y, x)
+                        Exit Sub
+                    ElseIf Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) = "0" Then
+                        MsgBox("cannot input 0.")
+                        Me.DataGridView1.CurrentCell = DataGridView1.Item(y, x)
+                        Exit Sub
+                    End If
+
+                    If y = DataGridView1.Columns.Count - 1 Then
+                        strExport &= Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) & vbCrLf
+                    Else
+                        strExport &= Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) & "|"
+                    End If
+
+                Next
+            Next
+
+            ' find rootPath if cannot connect to DB, program create rootpath by define 
+            If Not findRootPathInDatabase() Then
+                findRootPathByDefine()
+            End If
+
+            If ExportTextFileForImport("Normal") Then
+                CountTextFile()
+                'MsgBox("Save complete.")
+            Else
+                MsgBox("Save not success.")
+            End If
+
+            If Not blnCheckDuplicate Then
+                m_objPlc.Started = True
+                m_objPlc.Started_Type = True
+                btnStartLot.Enabled = False
+                btnRework.Enabled = False
+                btnEndLot.Enabled = True
+                btnEndRework.Enabled = False
+                'blnCheckFistStep = True
+                btnEdit.Enabled = False
+                SaveComplete(False, False)
+            End If
+
+
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "btnStartLot_Click", ex)
+        End Try
+    End Sub
+
+    Private Sub CountTextFile()
+        Try
+            Dim di As IO.DirectoryInfo
+
+            If Not My.Computer.FileSystem.DirectoryExists(strFilePath & "\exportCSOperation") Then
+                MsgBox("Path ""{0}"" not exist, please recheck configuration and restart program (" & strFilePath & "\exportCSOperation" & " )")
+                Return
+            End If
+            di = New IO.DirectoryInfo(strFilePath & "\exportCSOperation")
+
+            Dim arrFile = di.GetFiles("*.txt", SearchOption.TopDirectoryOnly).OrderBy(Function(x) x.LastWriteTime)
+            If arrFile.Count > 0 And m_astrFileNameList.Count = 0 Then
+                For Each inf As FileInfo In arrFile
+                    Me.m_astrFileNameList.Add(inf.FullName)
+                Next
+                m_objLogger.AppendLog("New Manual Import File Found", "Info")
+
+                While Me.m_astrFileNameList.Count > 0
+                    Me.ImportDataFile()
+                End While
+            End If
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "ImportTextFile", ex)
+        End Try
+    End Sub
+
+    Private Sub ImportDataFile()
+        If Me.m_astrFileNameList.Count > 0 Then
+            Dim tempfilePath As String = Me.m_astrFileNameList(0).ToString
+            Try
+                If Not My.Computer.FileSystem.DirectoryExists(strBackupName) Then
+                    My.Computer.FileSystem.CreateDirectory(strBackupName)
+                End If
+
+                Using theFile As New IO.FileStream(tempfilePath, FileMode.Open, FileAccess.Read)
+                    If Not theFile.CanRead Then
+                        m_objLogger.AppendLog(Me.GetType.Name, "ImportDataFile", "Cannot read the file: " & strFilePath, "Error")
+                    Else
+                        Me.ImportToDB(tempfilePath)
+                        'MsgBox("Welcome to add the data.")
+                    End If
+                End Using
+
+                'Import complete, move file to backup
+                Me.m_astrFileNameList.RemoveAt(0)
+                arrtemp = Split(tempfilePath, "\")
+                MoveFile(tempfilePath, strBackupName & arrtemp(arrtemp.Count - 1))
+            Catch ex As Exception
+                m_objLogger.AppendLog(ex)
+                Me.m_astrFileNameList.RemoveAt(0)
+                MoveFile(tempfilePath, strBackupName & arrtemp(arrtemp.Count - 1))
+            End Try
+        End If
+    End Sub
+
+    Private Sub ImportToDB(ByVal filePath As String)
+        m_dsIHI_RHF5.GLOBAL_VARIABLES.Clear()
+        m_dsIHI_RHF5.LOT_PART.Clear()
+        m_dsIHI_RHF5.LOT.Clear()
+
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(filePath)
+            MyReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
+            MyReader.TrimWhiteSpace = False
+            MyReader.Delimiters = New String() {"|"}
+            Dim strCurrentRow As String()
+            Dim blnCheck As Boolean
+            Dim intNumRows As Integer = 0
+
+            Dim arrFilePath() As String = Nothing
+            'Loop through all of the fields in the file. 
+            'If any lines are corrupt, report an error and continue parsing. 
+
+            'skip 1st line
+            'strCurrentRow = MyReader.ReadFields()
+            blnCheck = True
+            blnCheckDuplicate = False
+
+            arrFilePath = Split(filePath.ToString, "\")
+            If arrFilePath(arrFilePath.Count - 1).Substring(0, 1) = "N" Then ' Normal
+                While Not MyReader.EndOfData
+                    Try
+                        strCurrentRow = MyReader.ReadFields()
+                        'Head
+                        If blnCheck Then
+                            blnCheck = False
+
+                            m_taLOT.FillBy_LOT_CS(m_dsIHI_RHF5.LOT, strCurrentRow(0).Trim)
+                            If m_dsIHI_RHF5.LOT IsNot Nothing AndAlso m_dsIHI_RHF5.LOT.Count > 0 Then
+                                MsgBox("Duplicate Production Lot.")
+                                blnCheckDuplicate = True
+                                Exit Sub
+                            End If
+
+                            m_taGlobal_Variables.FillBy_ID(m_dsIHI_RHF5.GLOBAL_VARIABLES, "strCustomerLot")
+                            If m_dsIHI_RHF5.GLOBAL_VARIABLES IsNot Nothing AndAlso m_dsIHI_RHF5.GLOBAL_VARIABLES.Count > 0 Then
+                                'Update Customer_LOT
+                                drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES(0)
+                                drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                                m_objLogger.AppendLog("Update Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            Else
+                                'Add Customer_LOT
+                                drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES.NewGLOBAL_VARIABLESRow
+                                drGlobal_Variables.ID = "strCustomerLot"
+                                drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                                m_dsIHI_RHF5.GLOBAL_VARIABLES.AddGLOBAL_VARIABLESRow(drGlobal_Variables)
+                                m_objLogger.AppendLog("Add Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            End If
+
+                            drLot = m_dsIHI_RHF5.LOT.NewLOTRow
+                            drLot.LOT_CS = strCurrentRow(0).Trim
+                            drLot.LOT_ITA = strCurrentRow(1).Trim
+                            drLot.LOT_QTY = CInt(strCurrentRow(2).Trim)
+                            drLot.CURRENT_QTY = 0
+                            drLot.START_LOT_WHEN = Now ' Format(Now, "dd/MM/yyyy H:mm:ss")
+                            drLot.START_MODE = "Normal"
+                            drLot.CREATED_WHEN = Now
+                            drLot.LAST_MODIFIED_WHEN = Now
+                            m_dsIHI_RHF5.LOT.AddLOTRow(drLot)
+                            m_objLogger.AppendLog("Add LOT [" & strCurrentRow(0) & "] - Normal Mode", "Info")
+
+                            'set data for PLC
+                            'Dim AAA As New clsPlcCommunication.sLotData
+                            'AAA.LotNo = ""
+
+                            m_objPlc.LotData.LotNo = strCurrentRow(0).Trim
+                            m_objPlc.LotData.LotQty = CInt(strCurrentRow(2).Trim)
+
+                        Else
+
+                            'Details
+                            drLotPart = m_dsIHI_RHF5.LOT_PART.NewLOT_PARTRow
+                            drLotPart.LOTRow = drLot
+                            drLotPart.PART_NO = strCurrentRow(1).Trim
+                            drLotPart.SEQ = CInt(strCurrentRow(0).Trim)
+                            drLotPart.PART_LOT_NO = strCurrentRow(2).Trim
+                            drLotPart.QTY = CInt(strCurrentRow(3).Trim)
+                            drLotPart.LOT_DATE_TIME = strCurrentRow(4).Trim & " " & strCurrentRow(5).Trim & ":00"
+                            drLotPart.CREATED_WHEN = Now
+                            m_dsIHI_RHF5.LOT_PART.AddLOT_PARTRow(drLotPart)
+                            m_objLogger.AppendLog("Add LOT_PART [" & strCurrentRow(0) & "] - Normal Mode", "Info")
+                        End If
+
+                        m_taManager.UpdateAll(m_dsIHI_RHF5)
+
+                    Catch ex As Exception
+                        m_objLogger.AppendLog(Me.GetType.Name, "ReadFields Normal Case", ex)
+                    End Try
+                End While
+            Else 'Rework
+                While Not MyReader.EndOfData
+                    Try
+                        strCurrentRow = MyReader.ReadFields()
+
+                        'Head
+                        If blnCheck Then
+                            blnCheck = False
+
+                            m_taLOT.FillBy_LOT_CS(m_dsIHI_RHF5.LOT, strCurrentRow(0).Trim)
+                            If Not (m_dsIHI_RHF5.LOT.Count = 1) Then
+                                MsgBox("Not Found Production Lot.")
+                                blnCheckDuplicate = True
+                                Exit Sub
+                            End If
+
+
+                            m_taGlobal_Variables.FillBy_ID(m_dsIHI_RHF5.GLOBAL_VARIABLES, "strCustomerLot")
+                            If m_dsIHI_RHF5.GLOBAL_VARIABLES IsNot Nothing AndAlso m_dsIHI_RHF5.GLOBAL_VARIABLES.Count > 0 Then
+                                'Update Customer_LOT
+                                drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES(0)
+                                drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                                m_objLogger.AppendLog("Update Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            Else
+                                'Add Customer_LOT
+                                drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES.NewGLOBAL_VARIABLESRow
+                                drGlobal_Variables.ID = "strCustomerLot"
+                                drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                                m_dsIHI_RHF5.GLOBAL_VARIABLES.AddGLOBAL_VARIABLESRow(drGlobal_Variables)
+                                m_objLogger.AppendLog("Add Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            End If
+
+                            'm_taGlobal_Variables.FillBy_ID(m_dsIHI_RHF5.GLOBAL_VARIABLES, "strCustomerLot")
+                            'If m_dsIHI_RHF5.GLOBAL_VARIABLES IsNot Nothing AndAlso m_dsIHI_RHF5.GLOBAL_VARIABLES.Count > 0 Then
+                            '    'Update Customer_LOT
+                            '    drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES(0)
+                            '    drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                            '    m_objLogger.AppendLog("Update Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            'Else
+                            '    'Add Customer_LOT
+                            '    drGlobal_Variables = m_dsIHI_RHF5.GLOBAL_VARIABLES.NewGLOBAL_VARIABLESRow
+                            '    drGlobal_Variables.ID = "strCustomerLot"
+                            '    drGlobal_Variables.TEXT_VALUE = strCurrentRow(1).Trim
+                            '    m_dsIHI_RHF5.GLOBAL_VARIABLES.AddGLOBAL_VARIABLESRow(drGlobal_Variables)
+                            '    m_objLogger.AppendLog("Add Global Variables [" & strCurrentRow(1) & "]", "Info")
+                            'End If
+
+                            'drLot = m_dsIHI_RHF5.LOT.NewLOTRow
+                            'drLot.LOT_CS = strCurrentRow(0).Trim
+                            'drLot.LOT_ITA = strCurrentRow(1).Trim
+                            'drLot.LOT_QTY = CInt(strCurrentRow(2).Trim)
+                            'drLot.CURRENT_QTY = 0
+                            'drLot.START_LOT_WHEN = Now ' Format(Now, "dd/MM/yyyy H:mm:ss")
+                            'drLot.START_MODE = "Rework"
+                            'drLot.CREATED_WHEN = Now
+                            'drLot.LAST_MODIFIED_WHEN = Now
+                            'm_dsIHI_RHF5.LOT.AddLOTRow(drLot)
+                            'm_objLogger.AppendLog("Add LOT [" & strCurrentRow(0) & "] - Normal Mode", "Info")
+
+                            ''set data for PLC
+                            ''Dim AAA As New clsPlcCommunication.sLotData
+                            ''AAA.LotNo = ""
+
+                            'm_objPlc.LotData.LotNo = strCurrentRow(0).Trim
+                            'm_objPlc.LotData.LotQty = CInt(strCurrentRow(2).Trim)
+
+                            'drLot = m_dsIHI_RHF5.LOT.NewLOTRow
+                            drLot = m_dsIHI_RHF5.LOT(0)
+                            drLot.LOT_CS = strCurrentRow(0).Trim
+                            drLot.LOT_ITA = strCurrentRow(1).Trim
+                            drLot.LOT_QTY = CInt(strCurrentRow(2).Trim)
+                            drLot.CURRENT_QTY = 0
+                            drLot.START_LOT_WHEN = Now ' Format(Now, "dd/MM/yyyy H:mm:ss")
+                            drLot.START_MODE = "Rework"
+                            'drLot.CREATED_WHEN = Now
+                            drLot.LAST_MODIFIED_WHEN = Now
+                            'm_dsIHI_RHF5.LOT.AddLOTRow(drLot)
+                            m_objLogger.AppendLog("Update LOT [" & strCurrentRow(0) & "] - Normal Mode", "Info")
+
+                            m_taLOT_PART.DeleteQuery(drLot.LOT_ID)
+
+                            'set data for PLC
+                            'Dim AAA As New clsPlcCommunication.sLotData
+                            'AAA.LotNo = ""
+                            m_objPlc.LotData.LotNo = strCurrentRow(0).Trim
+                            m_objPlc.LotData.LotQty = CInt(strCurrentRow(2).Trim)
+
+                        Else
+
+                            'Details
+                            drLotPart = m_dsIHI_RHF5.LOT_PART.NewLOT_PARTRow
+                            drLotPart.LOTRow = drLot
+                            drLotPart.PART_NO = strCurrentRow(1).Trim
+                            drLotPart.SEQ = CInt(strCurrentRow(0).Trim)
+                            drLotPart.PART_LOT_NO = strCurrentRow(2).Trim
+                            drLotPart.QTY = CInt(strCurrentRow(3).Trim)
+                            drLotPart.LOT_DATE_TIME = strCurrentRow(4).Trim & " " & strCurrentRow(5).Trim & ":00"
+                            drLotPart.CREATED_WHEN = Now
+                            m_dsIHI_RHF5.LOT_PART.AddLOT_PARTRow(drLotPart)
+                            m_objLogger.AppendLog("Add LOT_PART [" & strCurrentRow(0) & "] - Normal Mode", "Info")
+                        End If
+
+                        m_taManager.UpdateAll(m_dsIHI_RHF5)
+
+                    Catch ex As Exception
+                        m_objLogger.AppendLog(Me.GetType.Name, "ReadFields Rework Case", ex)
+                    End Try
+                End While
+            End If
+
+        End Using
+    End Sub
+
+    Private Sub MoveFile(ByVal fromFile As String, ByVal toFile As String)
+        If My.Computer.FileSystem.FileExists(fromFile) = True Then
+            My.Computer.FileSystem.MoveFile(fromFile, toFile, False)
+        End If
+    End Sub
+
+    Private Function findRootPathInDatabase()
+
+        Try
+            'My.Settings.RunningLineName = CS
+            Dim dtLineMas As ihi_rhf5.LINE_MASTERDataTable = m_taLine_Master.GetDataBy_LINE_NAME("CS")
+
+            For i = 0 To dtLineMas.Count - 1
+                strFilePath = dtLineMas.Item(i).ROOT_TEMP
+            Next
+
+            Return True
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "findRootPathInDatabase", ex)
+            Return False
+        End Try
+
+    End Function
+
+    Private Function findRootPathByDefine()
+
+        Try
+            'strFilePath = "D:\OMRON_DATA_FILING\temp"
+            strFilePath = My.Settings.exportCSOperationPath
+            Return True
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "findRootPathByDefine", ex)
+            Return False
+        End Try
+
+    End Function
+
+    Private Sub SaveComplete(ByVal blnEnable As Boolean, blnReset As Boolean)
+        Try
+            If blnEnable Then
+
+                If blnReset Then
+
+                    txtProductionLot.Text = ""
+                    'txtCustomerLot.Text = ""
+                    txtLotQTY.Text = ""
+                    txtCurrentQTY.Text = ""
+
+                    txtProductionLot.Enabled = True
+                    txtLotQTY.Enabled = True
+                    'txtCurrentQTY.Enabled = True
+
+                    For x = 0 To DataGridView1.Rows.Count - 1
+                        For y = 0 To DataGridView1.Columns.Count - 1
+                            If y >= 2 Then
+                                DataGridView1.Rows(x).Cells(y).ReadOnly = False
+                                DataGridView1.Rows(x).Cells(y).Value = ""
+                            End If
+                        Next
+                    Next
+
+                Else
+
+                    txtProductionLot.Enabled = True
+                    txtLotQTY.Enabled = True
+                    'txtCurrentQTY.Enabled = True
+
+                    For x = 0 To DataGridView1.Rows.Count - 1
+                        For y = 0 To DataGridView1.Columns.Count - 1
+                            If y >= 2 Then
+                                DataGridView1.Rows(x).Cells(y).ReadOnly = False
+                            End If
+                        Next
+                    Next
+
+                End If
+
+            Else
+                
+                txtProductionLot.Enabled = False
+                txtCustomerLot.Enabled = False
+                txtLotQTY.Enabled = False
+                'txtCurrentQTY.Enabled = False
+
+                'DataGridView1.Enabled = False
+                For x = 0 To DataGridView1.Rows.Count - 1
+                    For y = 0 To DataGridView1.Columns.Count - 1
+                        If y >= 2 Then
+                            DataGridView1.Rows(x).Cells(y).ReadOnly = True
+                        End If
+                    Next
+                Next
+            End If
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "ExportTextFileForImport", ex)
+        End Try
+    End Sub
+
+    Private Function ExportTextFileForImport(ByVal strMode As String)
+        Try
+            Dim timeForImport As DateTime = DateTime.Now
+            Dim formatForImport As String = "yyyyMMddHHmmssfff"
+
+            If Not My.Computer.FileSystem.DirectoryExists(strFilePath & "\exportCSOperation") Then
+                My.Computer.FileSystem.CreateDirectory(strFilePath & "\exportCSOperation")
+            End If
+
+            Using stWrite As New IO.StreamWriter(strFilePath & "\exportCSOperation\" & _
+                                                    strMode & "CSOperation" & timeForImport.ToString(formatForImport) & ".txt", True)
+                stWrite.WriteLine(strExport)
+            End Using
+            Return True
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "ExportTextFileForImport", ex)
+            Return False
+        End Try
+    End Function
+
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        For x = 0 To DataGridView1.Rows.Count - 1
+            For y = 0 To DataGridView1.Columns.Count - 1
+
+                Select Case y
+                    Case 0
+                    Case 1
+                    Case 2
+                        DataGridView1.Rows(x).Cells(y).Value = "1111111111"
+                    Case 3
+                        DataGridView1.Rows(x).Cells(y).Value = x + 1
+                    Case 4
+                        DataGridView1.Rows(x).Cells(y).Value = "13/01/2016"
+                    Case 5
+                        DataGridView1.Rows(x).Cells(y).Value = "19:14"
+                End Select
+
+            Next
+        Next
+    End Sub
+
+    Private Sub btnRework_Click(sender As System.Object, e As System.EventArgs) Handles btnRework.Click
+        Try
+
+            If txtProductionLot.Text.Trim = "" Then
+                MsgBox("Please input Production Lot.")
+                txtProductionLot.Select()
+                Exit Sub
+            End If
+
+            If txtCustomerLot.Text.Trim = "" Then
+                MsgBox("Please input Customer Lot.")
+                txtCustomerLot.Select()
+                Exit Sub
+            End If
+
+            If txtLotQTY.Text.Trim = "" Then
+                MsgBox("Please input Lot QTY.")
+                txtLotQTY.Select()
+                Exit Sub
+            End If
+
+            strExport = ""
+            strExport &= txtProductionLot.Text & "|" & txtCustomerLot.Text & _
+                            "|" & txtLotQTY.Text & vbCrLf
+
+            For x = 0 To DataGridView1.Rows.Count - 1
+                For y = 0 To DataGridView1.Columns.Count - 1
+                    If Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) = "" Then
+                        MsgBox("cannot input empty data.")
+                        Me.DataGridView1.CurrentCell = DataGridView1.Item(y, x)
+                        Exit Sub
+                    ElseIf Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) = "0" Then
+                        MsgBox("cannot input 0.")
+                        Me.DataGridView1.CurrentCell = DataGridView1.Item(y, x)
+                        Exit Sub
+                    End If
+
+                    If y = DataGridView1.Columns.Count - 1 Then
+                        strExport &= Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) & vbCrLf
+                    Else
+                        strExport &= Trim(DataGridView1.Rows(x).Cells(y).EditedFormattedValue) & "|"
+                    End If
+
+                Next
+            Next
+
+            ' find rootPath if cannot connect to DB, program create rootpath by define 
+            If Not findRootPathInDatabase() Then
+                findRootPathByDefine()
+            End If
+
+            If ExportTextFileForImport("Rework") Then
+                CountTextFile()
+                'MsgBox("Save complete.")
+            Else
+                MsgBox("Save not success.")
+            End If
+
+            If Not blnCheckDuplicate Then
+                m_objPlc.Started = True
+                m_objPlc.Started_Type = False
+                btnStartLot.Enabled = False
+                btnRework.Enabled = False
+                btnEndLot.Enabled = False
+                btnEndRework.Enabled = True
+                'blnCheckFistStep = True
+                btnEdit.Enabled = False
+                SaveComplete(False, False)
+            End If
+
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "btnRework_Click", ex)
+        End Try
+    End Sub
+
+    Private Sub m_objPlc_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles m_objPlc.ProgressChanged
+        Try
+            Select Case e.ProgressPercentage
+                Case 10
+                    'PLC Ready for start lot
+                Case 20
+                    'PLC Request End Lot
+                Case 30
+                    'PLC Request End Lot
+                Case 50
+                    'Refresh Curr Qty
+                    txtCurrentQTY.Text = CInt(e.UserState).ToString
+                    'If txtCurrentQTY.Text <> "" AndAlso txtCurrentQTY.Text = txtLotQTY.Text Then
+                    '    If blnCheckFistStep Then
+                    '        blnCheckFistStep = False
+                    '        EndLotProcess()
+                    '    End If
+                    'End If
+                Case 70
+                    'Button Enable = True
+                    EndLotProcess()
+                Case 80
+                    'reset Current QTY
+                    ResetCurrentQTY()
+            End Select
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "m_objPlc_ProgressChanged", ex)
+        End Try
+    End Sub
+
+    Private Sub ResetCurrentQTY()
+        txtCurrentQTY.Text = ""
+    End Sub
+
+    Private Function EndLotProcess()
+        'CHECK CAN End
+        If Not m_objPlc.Started Then
+            Return False
+        Else
+            Dim dlrResult As DialogResult = MessageBox.Show("You want to reset new data?", _
+            "Save Completed.", _
+            MessageBoxButtons.YesNo)
+            If dlrResult = Windows.Forms.DialogResult.Yes Then
+                SaveComplete(True, True)
+            Else
+                SaveComplete(True, False)
+            End If
+            m_objPlc.Started = False
+            btnStartLot.Enabled = True
+            btnEndLot.Enabled = False
+            btnRework.Enabled = True
+            btnEndRework.Enabled = False
+            btnEdit.Enabled = True
+            'txtCurrentQTY.Text = ""
+
+            Return True
+        End If
+    End Function
+
+    Private Sub btnEndLot_Click(sender As Object, e As System.EventArgs) Handles btnEndLot.Click
+        Try
+            EndLotProcess()
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "btnEndLot_Click", ex)
+        End Try
+    End Sub
+
+    Private Sub btnEndRework_Click(sender As Object, e As System.EventArgs) Handles btnEndRework.Click
+        Try
+            EndLotProcess()
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "btnEndRework_Click", ex)
+        End Try
+    End Sub
+
+    Private Sub btnEdit_Click(sender As System.Object, e As System.EventArgs) Handles btnEdit.Click
+        Try
+            If txtCustomerLot.Enabled Then
+                txtCustomerLot.Enabled = False
+            Else
+                txtCustomerLot.Enabled = True
+            End If
+        Catch ex As Exception
+            m_objLogger.AppendLog(Me.GetType.Name, "btnEdit_Click", ex)
+        End Try
+
+    End Sub
+End Class

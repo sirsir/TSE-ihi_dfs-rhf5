@@ -1,0 +1,34 @@
+﻿Module modGlobalVariable
+
+    Public m_clsLogger As clsLogger = New clsLogger()
+
+    Public dicSearch As Dictionary(Of String, String) = New Dictionary(Of String, String)
+
+    Public dicMapLineId As Dictionary(Of String, Integer) = New Dictionary(Of String, Integer)
+
+    Public dicMapSearchBy As Dictionary(Of String, String) = New Dictionary(Of String, String)
+
+    Public Sub initialize_modGlobalVariable()
+
+        dicSearch.Add("Line", "")
+        dicSearch.Add("Machine", "")
+        dicSearch.Add("Search By", "")
+        dicSearch.Add("Serial", "")
+        dicSearch.Add("Lot No", "")
+        dicSearch.Add("Date From", "")
+        dicSearch.Add("Date To", "")
+        dicSearch.Add("Result", "")
+
+        dicMapLineId.Add("B/H", 1)
+        dicMapLineId.Add("C/S", 2)
+
+        dicMapSearchBy.Add("B/H", "SERIAL_BH")
+        dicMapSearchBy.Add("C/S", "SERIAL_CS")
+        dicMapSearchBy.Add("ITA", "SERIAL_ITA")
+
+    End Sub
+
+
+
+
+End Module

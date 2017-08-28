@@ -1,0 +1,19 @@
+[DB Server Windows]
+user=administrator
+password=lk,ki501
+
+[DB]
+server=192.168.99.14
+db_name=ITT-DB1-PRDDATA
+user=sa
+password=Gategroup2016-
+
+[C/S PC]
+192.168.2.100
+user=admin
+password=123456
+
+[B/H PC]
+192.168.2.102
+user=administrator
+password=123456

@@ -1,0 +1,303 @@
+﻿Public Class frmFilter
+    'Private Sub AddLabelTextbox_to_Table(tbl1 As TableLayoutPanel, strLable As String, strName As String, intRow As Integer, intCol As Integer)
+    '    tbl1.Controls.Add(New Label() With {.Text = strLable, .Anchor = AnchorStyles.Right, .AutoSize = True}, intRow, intCol)
+    '    'tbl1.Controls.Add(New ComboBox() With {.Name = strName, .Dock = DockStyle.Fill}, intRow + 1, intCol)
+    '    tbl1.Controls.Add(New TextBox() With {.Name = strName, .Dock = DockStyle.Fill, .Anchor = AnchorStyles.Left}, intRow + 1, intCol)
+    'End Sub
+
+    'Private Sub AddLabelRadiobutton_to_Table(tbl1 As TableLayoutPanel, strLable As String, strName As String, strChoices As String, intRow As Integer, intCol As Integer)
+    '    tbl1.Controls.Add(New Label() With {.Text = strLable, .Anchor = AnchorStyles.Right, .AutoSize = True}, intRow, intCol)
+    '    'tbl1.Controls.Add(New ComboBox() With {.Name = strName, .Dock = DockStyle.Fill}, intRow + 1, intCol)
+
+    '    'tbl1.RowStyles.Add(New RowStyle(SizeType.AutoSize))
+    '    'tbl1.ColumnStyles.Add(New ColumnStyle(SizeType.AutoSize))
+
+    '    Dim strButtons As String() = strChoices.Split("|")
+
+    '    Dim newTable As TableLayoutPanel = New TableLayoutPanel() With {.Name = strName, .Dock = DockStyle.Fill, .Anchor = AnchorStyles.Left}
+    '    'Dim newTable As TableLayoutPanel = New TableLayoutPanel() With {.Anchor = AnchorStyles.Left}
+
+    '    tbl1.Controls.Add(newTable, intRow + 1, intCol)
+
+    '    newTable.ColumnStyles.Add(New ColumnStyle(SizeType.AutoSize))
+
+    '    'newTable.RowStyles.Add(New RowStyle(SizeType.AutoSize))
+
+
+
+    '    For Each strBtn In strButtons
+    '        'newTable.RowCount += 1
+    '        newTable.ColumnCount += 1
+    '        newTable.Controls.Add(New RadioButton() With {.Name = strBtn, .Text = strBtn, .Size = New System.Drawing.Size(50, 30), .Dock = DockStyle.Fill, .Anchor = AnchorStyles.Left, .AutoSize = True}, newTable.RowCount - 1, 0)
+    '        'newTable.Controls.Add(New RadioButton() With {.Text = strBtn, .Size = New System.Drawing.Size(50, 30), .Dock = DockStyle.Fill, .Anchor = AnchorStyles.Left, .AutoSize = True}, 0, newTable.RowCount - 1)
+    '    Next
+
+    '    'tbl1.AutoSize = True
+    '    'tbl1.RowStyles.Clear()
+
+    '    'newTable.ColumnStyles.Add(New ColumnStyle(SizeType.AutoSize))
+
+    '    'newTable.RowStyles.Add(New RowStyle(SizeType.AutoSize))
+
+    '    newTable.AutoSize = True
+    '    'tbl1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset
+
+    'End Sub
+
+    'Public currentLine As String = ""
+
+    Private Sub AddControls()
+        'Dim textbox1 As New TextBox
+        'textbox1.Name = "Textbox1"
+        'textbox1.Size = New Size(170, 20)
+        'textbox1.Location = New Point(167, 32)
+        'Me.TableLayoutPanel2.Controls.Add(textbox1, 0, 0)
+
+        'Me.TableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset
+        Me.TableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset
+        'Me.TableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset
+
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Line:", "Line", 0, 0)
+        'AddLabelRadiobutton_to_Table(Me.TableLayoutPanel2, "Line:", "Line", "B/H|C/S", 0, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Machine:", "Machine", 2, 0)
+        'AddLabelRadiobutton_to_Table(Me.TableLayoutPanel2, "Search By:", "SearchBy", "B/H|C/S|ITA", 4, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Serial:", "Serial", 6, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Lot No:", "LotNo", 8, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Date From:", "DateFrom", 10, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Date To:", "DateTo", 12, 0)
+        'AddLabelTextbox_to_Table(Me.TableLayoutPanel2, "Result:", "Result", 14, 0)
+
+    End Sub
+
+    Private Sub SetControls()
+
+
+        If dicSearch("Date From") = "" Then
+            'dicSearch("Date From") = DateTime.Now.ToString("yyyyMMdd")
+            dicSearch("Date From") = DateTime.Now.ToString("dd-MM-yyyy")
+
+        End If
+
+        If dicSearch("Date To") = "" Then
+            dicSearch("Date To") = DateTime.Now.ToString("dd-MM-yyyy")
+
+        End If
+
+
+        'Me.TableLayoutPanel2.Controls("Line").Text = dicSearch("Line")
+        'Me.TableLayoutPanel2.Controls("Machine").Text = dicSearch("Machine")
+        ''Me.TableLayoutPanel2.Controls("SearchBy").Text = dicSearch("Search By")
+        'Me.TableLayoutPanel2.Controls("Serial").Text = dicSearch("Serial")
+        'Me.TableLayoutPanel2.Controls("LotNo").Text = dicSearch("Lot No")
+        'Me.TableLayoutPanel2.Controls("DateFrom").Text = dicSearch("Date From")
+        'Me.TableLayoutPanel2.Controls("DateTo").Text = dicSearch("Date To")
+        'Me.TableLayoutPanel2.Controls("Result").Text = dicSearch("Result")
+
+        'TextBoxLine.Text = dicSearch("Line")
+        'TextBoxMachine.Text = dicSearch("Machine")
+        ComboBoxMachine.Text = dicSearch("Machine")
+
+
+
+        TextBoxSerial.Text = dicSearch("Serial")
+        TextBoxLotNo.Text = dicSearch("Lot No")
+        TextBoxDateFrom.Text = dicSearch("Date From")
+        TextBoxDateTo.Text = dicSearch("Date To")
+        TextBoxResult.Text = dicSearch("Result")
+
+
+
+        'Dim checkedRadioButton1 As RadioButton = Me.TableLayoutPanel2.Controls("Line").Controls(dicSearch("Line"))
+
+
+        For Each ctrl In TableLayoutPanelLine.Controls
+            If ctrl.Text = dicSearch("Line") Then
+                ctrl.Checked = True
+                Exit For
+            End If
+        Next
+
+        For Each ctrl In TableLayoutPanelSearchBy.Controls
+            If ctrl.Text = dicSearch("Search By") Then
+                ctrl.Checked = True
+                Exit For
+            End If
+        Next
+
+        'Dim checkedRadioButton1 As RadioButton = TableLayoutPanelLine.Controls(dicSearch("Line"))
+        'If checkedRadioButton1 IsNot Nothing Then
+        '    checkedRadioButton1.Checked = True
+        'End If
+
+        'Dim checkedRadioButton2 As RadioButton = Me.TableLayoutPanel2.Controls("SearchBy").Controls(dicSearch("Search By"))
+        'Dim checkedRadioButton2 As RadioButton = TableLayoutPanelSearchBy.Controls(dicSearch("Search By"))
+        'If checkedRadioButton2 IsNot Nothing Then
+        '    checkedRadioButton2.Checked = True
+        'End If
+    End Sub
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        AddControls()
+        'SetupDataObj()
+        SetControls()
+
+
+    End Sub
+
+    Private Sub ButtonOK_Click(sender As System.Object, e As System.EventArgs) Handles ButtonOK.Click
+
+        Dim checkedRadioButton1 As RadioButton
+        'checkedRadioButton1 = Me.TableLayoutPanel2.Controls("Line").Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+        checkedRadioButton1 = Me.TableLayoutPanelLine.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+
+        Dim checkedRadioButton2 As RadioButton
+        'checkedRadioButton2 = Me.TableLayoutPanel2.Controls("SearchBy").Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+        checkedRadioButton2 = Me.TableLayoutPanelSearchBy.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+
+
+        If checkedRadioButton1 Is Nothing Then
+            MsgBox("Please select ""Line""")
+            Exit Sub
+        End If
+
+
+        'If Me.TableLayoutPanel2.Controls("DateFrom").Text = "" Then
+        '    MsgBox("Please select ""Date From""")
+        '    Exit Sub
+        'End If
+
+        'If Me.TableLayoutPanel2.Controls("DateTo").Text = "" Then
+        '    MsgBox("Please select ""Date To""")
+        '    Exit Sub
+        'End If
+
+        If Me.TextBoxDateFrom.Text = "" Then
+            MsgBox("Please select ""Date From""")
+            Exit Sub
+        End If
+
+        If Me.TextBoxDateTo.Text = "" Then
+            MsgBox("Please select ""Date To""")
+            Exit Sub
+        End If
+
+        If (Me.TextBoxSerial.Text <> "" Or Me.TextBoxLotNo.Text <> "") AndAlso checkedRadioButton2 Is Nothing Then
+            MsgBox("Please select ""Search By""")
+            Exit Sub
+        End If
+
+        ''dicSearch("Line") = Me.TableLayoutPanel2.Controls("Line").Text
+        'dicSearch("Line") = checkedRadioButton1.Text
+        'dicSearch("Machine") = Me.TableLayoutPanel2.Controls("Machine").Text
+        ''dicSearch("Search By") = Me.TableLayoutPanel2.Controls("Search By").Text
+        'dicSearch("Serial") = Me.TableLayoutPanel2.Controls("Serial").Text
+        'dicSearch("Lot No") = Me.TableLayoutPanel2.Controls("LotNo").Text
+        'dicSearch("Date From") = Me.TableLayoutPanel2.Controls("DateFrom").Text
+        'dicSearch("Date To") = Me.TableLayoutPanel2.Controls("DateTo").Text
+        'dicSearch("Result") = Me.TableLayoutPanel2.Controls("Result").Text
+
+        dicSearch("Line") = checkedRadioButton1.Text
+
+        'dicSearch("Machine") = Me.TextBoxMachine.Text
+        dicSearch("Machine") = Me.ComboBoxMachine.Text
+
+
+        dicSearch("Serial") = Me.TextBoxSerial.Text
+        dicSearch("Lot No") = Me.TextBoxLotNo.Text
+        dicSearch("Date From") = Me.TextBoxDateFrom.Text
+        dicSearch("Date To") = Me.TextBoxDateTo.Text
+        dicSearch("Result") = Me.TextBoxResult.Text
+
+        If checkedRadioButton2 IsNot Nothing Then
+            dicSearch("Search By") = checkedRadioButton2.Text
+        Else
+            dicSearch("Search By") = ""
+        End If
+
+
+
+
+        'Me.ParentForm.TableLayoutPanel2.Controls("")
+        DialogResult = Windows.Forms.DialogResult.OK
+
+    End Sub
+
+    Private Sub ButtonCANCEL_Click(sender As System.Object, e As System.EventArgs) Handles ButtonCANCEL.Click
+        Me.Dispose()
+    End Sub
+
+    
+
+    Private Sub SetListbox(ByVal intLineId As Integer)
+
+        'Dim checkedRadioButton1 As RadioButton
+        ''checkedRadioButton1 = Me.TableLayoutPanel2.Controls("Line").Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+        'checkedRadioButton1 = Me.TableLayoutPanelLine.Controls.OfType(Of RadioButton)().FirstOrDefault(Function(r) r.Checked = True)
+
+        'If currentLine = checkedRadioButton1.Text Then
+        '    Exit Sub
+        'End If
+
+        'currentLine = checkedRadioButton1.Text
+
+        Dim dt As ihi_rhf5_developmentDataSet.MACHINEDataTable = New ihi_rhf5_developmentDataSet.MACHINEDataTable
+
+
+        da_MACHINE.FillByLineId(dt, intLineId)
+
+        ComboBoxMachine.ResetText()
+
+
+        'ComboBoxMachine.DataSource = Nothing
+
+        'ComboBoxMachine.DataSource = dt
+        'ComboBoxMachine.DisplayMember = "MACHINE_NAME"
+        'ComboBoxMachine.ValueMember = "MACHINE_NAME"
+
+
+        ComboBoxMachine.Items.Clear()
+        ComboBoxMachine.Items.Add("")
+
+        For Each r As ihi_rhf5_developmentDataSet.MACHINERow In dt.Rows
+            ComboBoxMachine.Items.Add(r.MACHINE_NAME)
+        Next
+
+        ComboBoxMachine.Refresh()
+
+        If ComboBoxMachine.Items.Contains(dicSearch("Machine")) Then
+            ComboBoxMachine.Text = dicSearch("Machine")
+        End If
+
+
+
+    End Sub
+
+    Private Sub RadioButton5_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton5.CheckedChanged
+        Try
+            If RadioButton5.Checked Then
+                SetListbox(dicMapLineId(RadioButton5.Text))
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub RadioButton4_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton4.CheckedChanged
+        Try
+            If RadioButton4.Checked Then
+                SetListbox(dicMapLineId(RadioButton4.Text))
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
+
+
+    End Sub
+End Class

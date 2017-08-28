@@ -1,0 +1,229 @@
+[2015/09/03 00:00:00.4633] [clsStateWaiting][SendSyncTime] Sync Time: 
+[2015/09/03 09:04:29.5409] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 09:04:29.5419] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 09:04:29.5439] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 09:04:29.5449] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 09:04:30.5900] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 09:04:31.3010] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150819CG CA178  Auto  OKCG150824    
+[2015/09/03 09:04:31.3020] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-38-31-39-43-47-20-43-41-31-37-38-20-20-41-75-74-6F-20-20-4F-4B-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 09:04:31.3270] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0121,0327,0149,0159,0333,FFFF,0000,0000,0000,0000,0000,0000,3428,2409,1508
+[2015/09/03 09:04:31.4040] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150819CG CA178  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '121', '32.7', '1.49', '1.59', '3.33', '', '2015:08:24', '09:34:28', '1')
+[2015/09/03 09:04:31.6810] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 09:04:31.6830] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 09:04:31.6850] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 09:04:32.6951] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 09:04:33.2231] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 09:04:33.2241] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 09:04:33.2421] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 09:04:33.2441] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 09:04:33.2451] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 09:04:34.9032] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 09:06:31.5559] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 09:06:31.5579] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 09:06:31.5599] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 09:06:31.5609] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 09:06:32.5699] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 09:06:33.0970] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150819CG CA176  Auto  OKCG150824    
+[2015/09/03 09:06:33.0990] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-38-31-39-43-47-20-43-41-31-37-36-20-20-41-75-74-6F-20-20-4F-4B-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 09:06:33.1130] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0120,0327,0163,0173,0336,FFFF,0000,0000,0000,0000,0000,0000,3544,2409,1508
+[2015/09/03 09:06:33.1380] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150819CG CA176  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '120', '32.7', '1.63', '1.73', '3.36', '', '2015:08:24', '09:35:44', '1')
+[2015/09/03 09:06:33.3360] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 09:06:33.3370] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 09:06:33.3390] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 09:06:34.3700] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 09:06:34.9061] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 09:06:34.9081] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 09:06:35.0631] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 09:06:35.0651] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 09:06:35.0671] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 09:06:36.5902] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 13:39:04.3352] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 13:39:04.3372] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 13:39:04.3382] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 13:39:04.3402] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:39:05.4103] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 13:39:06.0053] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150819CG CA206  Auto  OKCG150824    
+[2015/09/03 13:39:06.0073] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-38-31-39-43-47-20-43-41-32-30-36-20-20-41-75-74-6F-20-20-4F-4B-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 13:39:06.1133] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0122,0327,0154,0165,0334,FFFF,0000,0000,0000,0000,0000,0000,3921,2409,1508
+[2015/09/03 13:39:06.1353] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150819CG CA206  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '122', '32.7', '1.54', '1.65', '3.34', '', '2015:08:24', '09:39:21', '1')
+[2015/09/03 13:39:06.3183] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 13:39:06.3193] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 13:39:06.3213] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:39:07.3674] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 13:39:07.8824] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 13:39:07.8834] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 13:39:08.0494] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 13:39:08.0514] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 13:39:08.0524] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 13:39:09.8135] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 13:41:13.9266] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 13:41:13.9286] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 13:41:13.9306] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 13:41:13.9316] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:41:14.9417] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 13:41:15.5577] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150421SP CA001  MT_2D OKCG150824    
+[2015/09/03 13:41:15.5597] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-34-32-31-53-50-20-43-41-30-30-31-20-20-4D-54-5F-32-44-20-4F-4B-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 13:41:15.5797] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,0000,0000,0000,4058,2410,1508
+[2015/09/03 13:41:15.6037] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150421SP CA001  ', 'MT_2D ', 'OP60', '', '', '', '', '', '', '', '', '', '', '', '0', '', '', '', '', '', '', '2015:08:24', '10:40:58', '1')
+[2015/09/03 13:41:15.7987] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 13:41:15.8007] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 13:41:15.8017] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:41:16.8478] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 13:41:17.3668] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 13:41:17.3678] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 13:41:17.4808] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 13:41:17.4828] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 13:41:17.4838] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 13:41:19.0169] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 13:48:05.2561] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 13:48:05.2581] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 13:48:05.2591] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 13:48:05.2611] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:48:06.2782] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 13:48:06.8752] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150421SP CA001  MT_2D NGCG150824    
+[2015/09/03 13:48:06.8772] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-34-32-31-53-50-20-43-41-30-30-31-20-20-4D-54-5F-32-44-20-4E-47-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 13:48:06.9042] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,0000,0000,0000,4124,2410,1508
+[2015/09/03 13:48:06.9282] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150421SP CA001  ', 'MT_2D ', 'OP60', '', '', '', '', '', '', '', '', '', '', '', '0', '', '', '', '', '', '', '2015:08:24', '10:41:24', '0')
+[2015/09/03 13:48:07.1213] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 13:48:07.1233] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 13:48:07.1243] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:48:08.3773] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 13:48:08.9224] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 13:48:08.9244] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 13:48:08.9304] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 13:48:08.9314] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 13:48:08.9334] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 13:48:10.5794] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 13:49:44.3248] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 13:49:44.3268] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 13:49:44.3278] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 13:49:44.3298] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:49:45.3379] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 13:49:45.9349] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150819CG CA207  Auto  OKCG150824    
+[2015/09/03 13:49:45.9359] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-38-31-39-43-47-20-43-41-32-30-37-20-20-41-75-74-6F-20-20-4F-4B-43-47-31-35-30-38-32-34-20-20-20-20
+[2015/09/03 13:49:45.9559] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0121,0328,0166,0178,0334,FFFF,0000,0000,0000,0000,0000,0000,1716,2413,1508
+[2015/09/03 13:49:45.9799] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150819CG CA207  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '121', '32.8', '1.66', '1.78', '3.34', '', '2015:08:24', '13:17:16', '1')
+[2015/09/03 13:49:46.1799] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 13:49:46.1819] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 13:49:46.1839] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:49:47.2170] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 13:49:47.7390] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 13:49:47.7410] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 13:49:47.7470] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 13:49:47.7480] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 13:49:47.7500] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 13:49:49.2961] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 13:52:19.6847] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 13:52:19.6867] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 13:52:19.6887] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 13:52:19.6897] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:52:20.9958] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 13:52:21.6428] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150421SP CA001  MT_2D OKCG150903    
+[2015/09/03 13:52:21.6448] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-34-32-31-53-50-20-43-41-30-30-31-20-20-4D-54-5F-32-44-20-4F-4B-43-47-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 13:52:21.6508] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,0000,0000,0000,0427,0309,1509
+[2015/09/03 13:52:21.7198] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150421SP CA001  ', 'MT_2D ', 'OP60', '', '', '', '', '', '', '', '', '', '', '', '0', '', '', '', '', '', '', '2015:09:03', '09:04:27', '1')
+[2015/09/03 13:52:22.0148] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 13:52:22.0168] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 13:52:22.0188] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 13:52:23.0319] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 13:52:23.5699] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 13:52:23.5719] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 13:52:23.5909] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 13:52:23.5929] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 13:52:23.5949] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 13:52:25.1150] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 14:41:36.1758] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 14:41:36.1768] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 14:41:36.1788] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 14:41:36.1808] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:41:37.2889] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 14:41:37.9949] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60CG150421SP CA001  MT_2D NGCG150903    
+[2015/09/03 14:41:37.9959] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-43-47-31-35-30-34-32-31-53-50-20-43-41-30-30-31-20-20-4D-54-5F-32-44-20-4E-47-43-47-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 14:41:38.0179] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,FFFF,FFFF,FFFF,FFFF,FFFF,FFFF,0000,0000,0000,0000,0000,0000,0628,0309,1509
+[2015/09/03 14:41:38.0429] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150421SP CA001  ', 'MT_2D ', 'OP60', '', '', '', '', '', '', '', '', '', '', '', '0', '', '', '', '', '', '', '2015:09:03', '09:06:28', '0')
+[2015/09/03 14:41:38.2609] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 14:41:38.2629] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 14:41:38.2649] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:41:39.3010] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 14:41:39.9340] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 14:41:39.9360] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 14:41:40.2020] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 14:41:40.2040] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 14:41:40.2050] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 14:41:41.9461] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 14:45:44.5620] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 14:45:44.5630] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 14:45:44.5650] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 14:45:44.5670] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:45:45.5951] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 14:45:46.1791] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60FN150903FN CA001  Auto  OKFN150903    
+[2015/09/03 14:45:46.1811] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-46-4E-31-35-30-39-30-33-46-4E-20-43-41-30-30-31-20-20-41-75-74-6F-20-20-4F-4B-46-4E-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 14:45:46.2461] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0122,0326,0126,0136,0335,FFFF,0000,0000,0000,0000,0000,0000,3901,0313,1509
+[2015/09/03 14:45:46.2791] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150903FN CA001  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '122', '32.6', '1.26', '1.36', '3.35', '', '2015:09:03', '13:39:01', '1')
+[2015/09/03 14:45:46.5981] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 14:45:46.6001] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 14:45:46.6011] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:45:47.6612] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 14:45:48.1982] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 14:45:48.1992] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 14:45:48.2512] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 14:45:48.2532] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 14:45:48.2552] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 14:45:49.8093] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 14:48:36.7519] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 14:48:36.7529] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 14:48:36.7549] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 14:48:36.7559] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:48:37.7919] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 14:48:38.3169] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60FN150903FN CA002  Auto  OKFN150903    
+[2015/09/03 14:48:38.3179] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-46-4E-31-35-30-39-30-33-46-4E-20-43-41-30-30-32-20-20-41-75-74-6F-20-20-4F-4B-46-4E-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 14:48:38.3239] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0121,0327,0180,0192,0335,FFFF,0000,0000,0000,0000,0000,0000,4111,0313,1509
+[2015/09/03 14:48:38.3479] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150903FN CA002  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '121', '32.7', '1.80', '1.92', '3.35', '', '2015:09:03', '13:41:11', '1')
+[2015/09/03 14:48:38.5630] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 14:48:38.5640] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 14:48:38.5650] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 14:48:39.5710] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 14:48:40.1000] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 14:48:40.1020] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 14:48:40.1620] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 14:48:40.1640] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 14:48:40.1660] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 14:48:41.7711] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 15:19:38.1623] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 15:19:38.1643] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 15:19:38.1663] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 15:19:38.1673] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 15:19:39.1844] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 15:19:39.7654] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60FN150903FN CA003  Auto  OKFN150903    
+[2015/09/03 15:19:39.7674] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-46-4E-31-35-30-39-30-33-46-4E-20-43-41-30-30-33-20-20-41-75-74-6F-20-20-4F-4B-46-4E-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 15:19:39.7934] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0122,0326,0140,0153,0335,FFFF,0000,0000,0000,0000,0000,0000,4802,0313,1509
+[2015/09/03 15:19:39.8174] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150903FN CA003  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '122', '32.6', '1.40', '1.53', '3.35', '', '2015:09:03', '13:48:02', '1')
+[2015/09/03 15:19:40.0074] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 15:19:40.0084] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 15:19:40.0094] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 15:19:41.0155] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 15:19:41.6595] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 15:19:41.6615] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 15:19:41.6865] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 15:19:41.6885] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 15:19:41.6895] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 15:19:43.2866] [clsStateWaiting][ReplyZeroToPLC] End Function
+[2015/09/03 15:21:44.9216] [clsStateWaiting][ReadPlcStatus] End Function
+[2015/09/03 15:21:44.9226] [clsStateWaiting][ReadPlcStatus] Read Request status
+[2015/09/03 15:21:44.9246] [clsPlcCommunication][SetState] Change State From :clsStateWaiting To clsStateProcessing
+[2015/09/03 15:21:44.9256] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 15:21:45.9346] [clsStateProcessing][Reply1ToPlc] End Function
+[2015/09/03 15:21:46.6377] [clsStateProcessing][ReadPlcDataAndWriteToFile] strData1 = 60FN150903FN CA004  Auto  OKFN150903    
+[2015/09/03 15:21:46.6387] [clsStateProcessing][ReadPlcDataAndWriteToFile] hexData1 = 36-30-46-4E-31-35-30-39-30-33-46-4E-20-43-41-30-30-34-20-20-41-75-74-6F-20-20-4F-4B-46-4E-31-35-30-39-30-33-20-20-20-20
+[2015/09/03 15:21:46.6447] [clsStateProcessing][ReadPlcDataAndWriteToFile] intData2 = 0116,0130,0000,0000,0250,0010,0250,0320,0343,0020,0035,FFFF,0000,0000,0000,0121,0327,0157,0170,0334,FFFF,0000,0000,0000,0000,0000,0000,4941,0313,1509
+[2015/09/03 15:21:46.6667] [clsMachineData][WriteDataToExcel] Insert Excel = Insert into [DATA$]  ([ITEM],[SERIAL], [MODE], [MC], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [DATE], [TIME], [STATUS])  values('','150903FN CA004  ', 'Auto  ', 'OP60', '116', '130', '0.0', '0.00', '2.50', '0.10', '2.50', '3.20', '3.43', '20', '35', '0', '121', '32.7', '1.57', '1.70', '3.34', '', '2015:09:03', '13:49:41', '1')
+[2015/09/03 15:21:46.8677] [clsStateProcessing][Process] Read PLC Status : Complete, Go to complete state
+[2015/09/03 15:21:46.8687] [clsPlcCommunication][SetState] Change State From :clsStateProcessing To clsStateComplete
+[2015/09/03 15:21:46.8707] [clsPlcCommunication][ForceToProcessCurrentState] Current Process is forced to start
+[2015/09/03 15:21:47.8777] [clsStateComplete][Reply2ToPlc] End Function
+[2015/09/03 15:21:48.4108] [clsStateComplete][Process] m_blnWorkDone = True
+[2015/09/03 15:21:48.4118] [clsStateComplete][ReadPlcStatus] Start Function
+[2015/09/03 15:21:48.6578] [clsStateComplete][ReadPlcStatus] End Function
+[2015/09/03 15:21:48.6598] [clsStateComplete][ReadPlcStatus] Read Waiting status
+[2015/09/03 15:21:48.6618] [clsPlcCommunication][SetState] Change State From :clsStateComplete To clsStateWaiting
+[2015/09/03 15:21:50.2619] [clsStateWaiting][ReplyZeroToPLC] End Function

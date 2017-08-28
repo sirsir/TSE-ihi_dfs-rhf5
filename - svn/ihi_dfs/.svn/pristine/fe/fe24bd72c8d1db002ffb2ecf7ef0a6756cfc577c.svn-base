@@ -1,0 +1,71 @@
+﻿Public Class frmShowParts
+
+    Private dtStatic As DataTable
+    
+
+    Private strCsLot As String
+    Private strItaLot As String
+
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+
+
+
+    Private Sub frmShowParts_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+
+        
+
+        strCsLot = drSelectedRow.Item("Serial_CS").ToString.Substring(0, 8)
+        strItaLot = drSelectedRow.Item("Serial_ITA").ToString.Substring(0, 12)
+
+
+        Me.TextBoxCsLot.Text = strCsLot
+
+        Me.TextBoxItaLot.Text = strItaLot
+
+
+        Me.FilterData()
+
+
+
+    End Sub
+
+
+    Private Sub FilterData()
+        
+        'Dim dv1 As DataView
+
+        'dtStatic = da_LOT_PART_w_LOT.GetDataByLotCs_LotIta(strCsLot, strItaLot)
+
+        dtStatic = da_LOT_PART_w_LOT.GetDataByLotCs(strCsLot)
+
+        'dtStatic = da_LOT_PART_w_LOT.GetData()
+
+        'dv1 = New DataView(dtStatic)
+
+        dtStatic = dtStatic.DefaultView.ToTable(False, "PART_NO", "PART_LOT_NO", "QTY", "DATE")
+
+        dtStatic.Columns("PART_NO").ColumnName = "PART*"
+        dtStatic.Columns("PART_LOT_NO").ColumnName = "LOT"
+
+
+
+
+        DataGridView1.DataSource = dtStatic
+
+
+
+
+
+    End Sub
+
+
+End Class

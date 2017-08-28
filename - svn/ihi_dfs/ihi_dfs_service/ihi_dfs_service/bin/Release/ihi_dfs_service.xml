@@ -1,0 +1,204 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ihi_dfs_service
+</name>
+</assembly>
+<members>
+<member name="P:ihi_dfs_service.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ihi_dfs_service.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ihi_dfs_service.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.LINE_MASTERDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINEDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_COLUMNSDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.RESULTDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_DATA_STRDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.SERIALDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMachineDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.CheckMyMachineAndMaxSEQDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMaxSEQDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.LINE_MASTERRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINERow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_COLUMNSRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.RESULTRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_DATA_STRRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.SERIALRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMachineRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.CheckMyMachineAndMaxSEQRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMaxSEQRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.LINE_MASTERRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINERowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_COLUMNSRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.RESULTRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.MACHINE_DATA_STRRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.SERIALRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMachineRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.CheckMyMachineAndMaxSEQRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5.FindMaxSEQRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.LINE_MASTERTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.MACHINETableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.MACHINE_COLUMNSTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.RESULTTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.MACHINE_DATA_STRTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.SERIALTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.FindMachineTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.CheckMyMachineAndMaxSEQTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.FindMaxSEQTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.UpdateUpdatedRows(ihi_dfs_service.ihi_rhf5,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.UpdateInsertedRows(ihi_dfs_service.ihi_rhf5,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.UpdateDeletedRows(ihi_dfs_service.ihi_rhf5,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.UpdateAll(ihi_dfs_service.ihi_rhf5)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:ihi_dfs_service.ihi_rhf5TableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+</members>
+</doc>

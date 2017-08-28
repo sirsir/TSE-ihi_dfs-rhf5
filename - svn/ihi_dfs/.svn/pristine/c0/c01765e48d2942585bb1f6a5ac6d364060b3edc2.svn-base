@@ -1,0 +1,101 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="exportCSOperationPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\OMRON_DATA_FILING\temp</Value>
+    </Setting>
+    <Setting Name="IsDebugMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DayToKeepTextLog" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="SleepInterval" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="ReadDataMemoryType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8519680</Value>
+    </Setting>
+    <Setting Name="WriteLifeMemoryType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8519680</Value>
+    </Setting>
+    <Setting Name="WriteSyncMemoryType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8519680</Value>
+    </Setting>
+    <Setting Name="SyncTimeWhen" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">00:00</Value>
+    </Setting>
+    <Setting Name="WriteStatusMemoryType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8519680</Value>
+    </Setting>
+    <Setting Name="WriteStatusAddress" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5021</Value>
+    </Setting>
+    <Setting Name="ReadStatusMemoryType" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">8519680</Value>
+    </Setting>
+    <Setting Name="ReadStatusAddress" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5020</Value>
+    </Setting>
+    <Setting Name="ReadDataAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5080</Value>
+    </Setting>
+    <Setting Name="ReadDataAsciiLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ReadDataBcdLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ReadDataCurrentQTY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5090</Value>
+    </Setting>
+    <Setting Name="WriteStatusAddressPCEnd" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5023</Value>
+    </Setting>
+    <Setting Name="ReadStatusAddressEnd" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5022</Value>
+    </Setting>
+    <Setting Name="ihi_rhf5_developmentConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=192.168.99.14;Initial Catalog=ITT-DB1-PRDDATA;Persist Security Info=True;User ID=sa;Password=Gategroup2016-&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=192.168.99.14;Initial Catalog=ITT-DB1-PRDDATA;Persist Security Info=True;User ID=sa;Password=Gategroup2016-</Value>
+    </Setting>
+    <Setting Name="PLC_Net" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="PLC_Node" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PLC_Unit" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ReadDataLotData" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5050</Value>
+    </Setting>
+    <Setting Name="ReadDataLotQTY" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">5070</Value>
+    </Setting>
+    <Setting Name="BarcodeSplitChar" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">|</Value>
+    </Setting>
+    <Setting Name="BarcodeSplitLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="BarcodePartNoIndex" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="BarcodeLotIndex" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="BarcodeQtyIndex" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

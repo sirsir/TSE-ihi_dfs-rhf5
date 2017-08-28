@@ -1,0 +1,73 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[schema_migrations](
+	[VERSION] [datetime] NOT NULL,
+	[DESCR] [varchar](255) NOT NULL,
+	[SQL_SCRIPT] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_schema_migrations] PRIMARY KEY CLUSTERED 
+(
+	[VERSION] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[schema_migrations] ADD  CONSTRAINT [DF_schema_migrations_VERSION]  DEFAULT (getdate()) FOR [VERSION]
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[schema_migrations_comparer](
+	[VERSION] [datetime] NOT NULL,
+	[DESCR] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_schema_migrations_comparer] PRIMARY KEY CLUSTERED 
+(
+	[VERSION] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE VIEW [dbo].[v_compare_schema_migrations]
+AS
+SELECT
+	CASE WHEN sm.[VERSION] is null THEN '' ELSE '*' END as [LOCAL]
+	, CASE WHEN smc.[VERSION] is null THEN '' ELSE '*' END as [REMOTE]
+	, isnull(sm.[VERSION], smc.[VERSION]) as [VERSION]
+	, isnull(sm.[DESCR], smc.[DESCR]) as [DESCR]
+FROM dbo.schema_migrations sm
+	FULL OUTER JOIN dbo.schema_migrations_comparer smc
+		ON sm.[VERSION] = smc.[VERSION]
+
+GO
+
+
